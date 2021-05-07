@@ -1,0 +1,64 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Library</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,400;1,100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+  <h1 id="heading">This is my library</h1>
+  <h2>I manage all my read books here</h2>
+  <button onclick="toggleForm()">Add a book</button>
+
+  <div class="layoutWrapper">
+    <div id="result"></div>
+    </div>
+    <button id="toggle-summary">click</button>
+    <div id="summary">
+      <h3>Library statistics</h3>
+      <div id="stats"></div>
+    </div>
+  </div>
+  <div class="form-popup" id="myForm">
+    <form class="form-container">
+      <h2>Add new book</h2>
+
+      <label for="email"><b>Book title</b></label>
+      <input type="text" placeholder="Book title" name="title" required>
+
+      <label for="email"><b>Author</b></label>
+      <input type="text" placeholder="Author" name="author" required>
+
+      <label for="pages"><b>Pages</b></label>
+      <input type="number" placeholder="Pages" name="pages" min="1" required>
+
+      <label for="read"><b>Read already</b></label>
+      <input type="checkbox" name="read">
+
+      <button type="submit" class="btn">Add Book</button>
+      <button type="button" class="btn cancel" onclick="toggleForm()">×</button>
+    </form>
+  </div>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

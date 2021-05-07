@@ -1,0 +1,3 @@
+const menuPageContent = () => '<h1>Whats on the menu - the meepo bakery</h1><div class="four-col"><img src="https://source.unsplash.com/random/600x600/?abstract"><img src="https://source.unsplash.com/random/600x600/?abstract"><img src="https://source.unsplash.com/random/600x600/?abstract"><img src="https://source.unsplash.com/random/600x600/?abstract"><img src="https://source.unsplash.com/random/600x600/?abstract"><img src="https://source.unsplash.com/random/600x600/?abstract"><img src="https://source.unsplash.com/random/600x600/?abstract"><img src="https://source.unsplash.com/random/600x600/?abstract"></div>'
+
+export { menuPageContent }

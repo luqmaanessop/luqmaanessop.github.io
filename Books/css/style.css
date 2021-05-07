@@ -1,0 +1,241 @@
+body {
+  max-width: 960px;
+  margin: 0 auto;
+  font-family: 'Lato', sans-serif;
+  padding: 0 25px;
+}
+
+#result {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+#toggle-summary {
+  background-color: #3487f7;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 50px;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+  margin-top: 0;
+}
+
+#toggle-summary:focus,
+#toggle-summary:hover {
+  background-color: #3489f7e5;
+  outline: none;
+}
+
+#summary {
+  background-color: #2196f3d6;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  transition: 0.2s ease-out;
+  margin-top: 0;
+  width: 30vw;
+  right: -30vw;
+  padding: 25px;
+  box-sizing: border-box;
+  color: white;
+}
+
+#toggle-summary.clicked {
+  right: 30vw;
+}
+
+#toggle-summary.clicked + #summary {
+  right: 0;
+}
+
+.bookCard {
+  position: relative;
+  padding: 100px 15px 85px 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px 2px rgb(0 0 0 / 30%);
+  transition: 0.2s ease-out;
+  height: 300px;
+}
+
+.bookCard p,
+.bookCard h3 {
+  display: inline;
+}
+
+.bookCard h3 {
+  transition: 0.2s ease-out;
+  margin-bottom: 25px;
+  display: inline-block;
+}
+
+.bookCard:hover h3 {
+  margin-top: 150px;
+}
+
+.bookCard span {
+  font-weight: 100;
+}
+
+.bookCard:hover {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bookCard:hover::after {
+  height: 300px;
+  top: -75px;
+}
+
+.bookCard::after {
+  transition: 0.2s ease-out;
+  background-color: #3487f7;
+  height: 300px;
+  width: 100%;
+  background-size: cover;
+  left: 0;
+  right: 0;
+  top: -200px;
+  position: absolute;
+  content: "";
+}
+
+.bookCard.unread::after {
+  background-color: #aebebf;
+  content: "Incomplete";
+  font-size: 14px;
+  line-height: 30px;
+  color: rgb(65, 65, 65);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+button {
+  transition: 0.2s ease-out;
+  background-color: #3487f7;
+  color: white;
+  padding: 10px;
+  border: none;
+  margin: 15px 0;
+}
+
+button:hover {
+  background-color: #3178d9;
+}
+
+#myForm {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0,0,0,0.4);
+}
+
+#myForm form {
+  background: white;
+  max-width: 500px;
+  margin: 0 auto;
+  height: 500px;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+  padding: 50px;
+}
+
+#myForm label {
+  width: 100%;
+  display: block;
+  margin: 10px 0;
+}
+
+#myForm [type="submit"] {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+#myForm .btn.cancel {
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+
+.bookCard button,
+.bookCard .switch {
+  position: absolute;
+  bottom: 0;
+  width: 45%;
+  font-size: 12px;
+}
+
+.bookCard button.action-remove {
+  left: 10px;
+}
+
+.bookCard .switch {
+  right: 10px;
+  bottom: 15px;
+  width: 60px;
+}
+
+/* //read status switch  */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch span {
+  padding-top: 8px;
+  padding-left: 4px;
+  font-weight: 400;
+  color: white;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.bookCard.read input + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.bookCard.read input + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}

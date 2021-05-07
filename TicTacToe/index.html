@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Tic Tac Toe</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,400;1,100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+  <h1>Tic-Tac-Toe</h1>
+  <button id="reset">New Game</button>
+  <label for="playerX">Player X name:</label>
+  <input type="text" id="playerX" data-identifier="X" name="playerX"><br><br>
+  <label for="playerO">Player O name:</label>
+  <input type="text" id="playerO" data-identifier="O" name="playerO">
+  <button id="startGame">Start game</button>
+  <div id="result"></div>
+  <table>
+    <tbody>
+      <tr>
+        <td data-play=0></td>
+        <td data-play=0></td>
+        <td data-play=0></td>
+      </tr>
+      <tr>
+        <td data-play=0></td>
+        <td data-play=0></td>
+        <td data-play=0></td>
+      </tr>
+      <tr>
+        <td data-play=0></td>
+        <td data-play=0></td>
+        <td data-play=0></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script src="js/index.js"></script>
+</body>
+</html>

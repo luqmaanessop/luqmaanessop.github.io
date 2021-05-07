@@ -1,0 +1,107 @@
+// Layout settings
+div[role="presentation"] {
+  font-family: open-sans, sans-serif;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+// Typography
+h1 {
+  font-size: 38px;
+  line-height: 42px;
+  letter-spacing: 0.06px;
+
+  @media all and(min-width: 768px) {
+    font-size: 48px;
+    line-height: 52px;
+  }
+}
+
+p {
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0.06px;
+}
+
+// Navigation
+nav {
+  display: flex;
+  align-items: center;
+  margin-left: -15px;
+
+  li {
+    padding: 15px;
+    cursor: pointer;
+    list-style-type: none;
+
+    &:hover {
+      color: white;
+      background-color: grey;
+    }
+  }
+}
+
+#content {
+  & > * {
+    margin-top: 15px;
+
+    @media all and(min-width: 768px) {
+      margin-top: 25px;
+    }
+  }
+}
+
+.two-col {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  & > * {
+    width: 100%;
+
+    @media all and(min-width: 768px) {
+      width: 40%;
+    }
+  }
+}
+
+.three-col {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  & > * {
+    width: 100%;
+
+    @media all and(min-width: 768px) {
+      width: 30%;
+    }
+  }
+}
+
+.four-col {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  & > * {
+    width: 100%;
+    margin-bottom: 15px;
+
+    @media all and(min-width: 768px) {
+      width: 24%;
+    }
+  }
+}
+
+footer {
+  padding: 50px;
+  text-align: center;
+  color: #fff;
+  background-color: black;
+}
