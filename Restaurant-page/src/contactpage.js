@@ -1,13 +1,11 @@
-const contactPageContent = () => '<h1>Contact us - the meepo bakery</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat elementum ipsum eget posuere. Morbi laoreet urna varius justo cursus sodales. Nam accumsan cursus ligula, a fringilla neque ullamcorper quis. Vestibulum porta cursus viverra. Aenean vel dui accumsan, malesuada turpis efficitur, faucibus sapien. Curabitur pharetra mattis ipsum. Vestibulum bibendum vestibulum dictum. Integer dignissim bibendum enim, id dictum diam accumsan sed. Sed tempor cursus suscipit.In suscipit dui quis dictum efficitur.</p><div class="two-col"><img src="https://source.unsplash.com/random/600x600/?abstract"><img src="https://source.unsplash.com/random/600x600/?abstract"></div><div class="three-col"><img src="https://source.unsplash.com/random/600x600/?abstract"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat elementum ipsum eget posuere. Morbi laoreet urna varius justo cursus sodales. Nam accumsan cursus ligula, a fringilla neque ullamcorper quis. Vestibulum porta cursus viverra. Aenean vel dui accumsan, malesuada turpis efficitur, faucibus sapien. Curabitur pharetra mattis ipsum. Vestibulum bibendum vestibulum dictum. Integer dignissim bibendum enim, id dictum diam accumsan sed. Sed tempor cursus suscipit.</p><img src="https://source.unsplash.com/random/600x600/?abstract"></div>'
-
-function createSection(titleValue, data) {
+function createSection(titleValue, sectionClass, data) {
   const section = document.createElement('section');
-  section.classList.add("section");
+  const sectionTitle = document.createElement('h2');
+  sectionTitle.classList.add("section-title");
+  sectionTitle.textContent = titleValue;
 
-  const title = document.createElement('h1');
-  title.classList.add("section-title");
-  title.textContent = titleValue;
-  section.appendChild(title);
+  const body = document.createElement('div');
+  body.classList.add(sectionClass);
 
   data.forEach(element => {
     const htmlSection = document.createElement(element.HTMLType);
@@ -22,16 +20,21 @@ function createSection(titleValue, data) {
       htmlSection.textContent = element.value;
     }
 
-    section.appendChild(htmlSection);
+    body.appendChild(htmlSection);
   });
+
+
+  section.appendChild(sectionTitle);
+  section.appendChild(body);
+
 
   switchContent(section);
 }
 
 function loadContactPage() {
-  createSection("Contact Us - Meepo's bakery",
+  createSection("Contact Us - Meepo's bakery", "3-col",
     [
-      { HTMLType: "h2", value:"This is a h2 title"},
+      { HTMLType: "h3", value:"This is a h3 title"},
       { HTMLType: "p", value:"This is some example text over here", class:"" },
       { HTMLType: "img", src:"https://source.unsplash.com/random/600x600/?abstract", value:"This is some example text over here", class:"" },
     ]

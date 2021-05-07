@@ -37,38 +37,38 @@ nav {
     #content > * {
       margin-top: 25px; } }
 
-.two-col {
+.2-col {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center; }
-  .two-col > * {
+  .2-col > * {
     width: 100%; }
     @media all and (min-width: 768px) {
-      .two-col > * {
+      .2-col > * {
         width: 40%; } }
 
-.three-col {
+.3-col {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center; }
-  .three-col > * {
+  .3-col > * {
     width: 100%; }
     @media all and (min-width: 768px) {
-      .three-col > * {
+      .3-col > * {
         width: 30%; } }
 
-.four-col {
+.4-col {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center; }
-  .four-col > * {
+  .4-col > * {
     width: 100%;
     margin-bottom: 15px; }
     @media all and (min-width: 768px) {
-      .four-col > * {
+      .4-col > * {
         width: 24%; } }
 
 footer {
