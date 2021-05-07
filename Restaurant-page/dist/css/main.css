@@ -37,38 +37,38 @@ nav {
     #content > * {
       margin-top: 25px; } }
 
-.2-col {
+.col-2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center; }
-  .2-col > * {
+  .col-2 > * {
     width: 100%; }
     @media all and (min-width: 768px) {
-      .2-col > * {
+      .col-2 > * {
         width: 40%; } }
 
-.3-col {
+.col-3 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center; }
-  .3-col > * {
+  .col-3 > * {
     width: 100%; }
     @media all and (min-width: 768px) {
-      .3-col > * {
+      .col-3 > * {
         width: 30%; } }
 
-.4-col {
+.col-4 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center; }
-  .4-col > * {
+  .col-4 > * {
     width: 100%;
     margin-bottom: 15px; }
     @media all and (min-width: 768px) {
-      .4-col > * {
+      .col-4 > * {
         width: 24%; } }
 
 footer {
