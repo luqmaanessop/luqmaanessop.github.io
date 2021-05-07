@@ -1,5 +1,5 @@
 import { homePageContent } from './homepage';
-import { contactPageContent } from './contactpage';
+import { loadContactPage } from './contactpage';
 import { menuPageContent } from './menupage';
 
 
@@ -20,10 +20,7 @@ function homePageSwitch() {
 }
 
 function contactPageSwitch() {
-  const element = document.createElement('div');
-  element.innerHTML = contactPageContent();
-
-  switchContent(element);
+  loadContactPage();
 }
 
 function menuPageSwitch() {
