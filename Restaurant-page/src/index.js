@@ -16,22 +16,24 @@ function homePageSwitch() {
   const element = document.createElement('div');
   element.innerHTML = homePageContent();
 
-  document.getElementById("content").innerHTML = "";
-  document.getElementById("content").appendChild(element);
+  switchContent(element);
 }
 
 function contactPageSwitch() {
   const element = document.createElement('div');
   element.innerHTML = contactPageContent();
 
-  document.getElementById("content").innerHTML = "";
-  document.getElementById("content").appendChild(element);
+  switchContent(element);
 }
 
 function menuPageSwitch() {
   const element = document.createElement('div');
   element.innerHTML = menuPageContent();
 
+  switchContent(element);
+}
+
+function switchContent(element) {
   document.getElementById("content").innerHTML = "";
   document.getElementById("content").appendChild(element);
 }
