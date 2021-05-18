@@ -32,7 +32,7 @@ function createSection(titleValue, sectionClass, data) {
 }
 
 function loadContactPage() {
-  createSection("Contact Us - Meepo's bakery", "col-3",
+  createSection("Contact Us - Meepo's bakery", "col-2",
     [
       { HTMLType: "h3", value:"This is a h3 title"},
       { HTMLType: "p", value:"This is some example text over here", class:"" },
