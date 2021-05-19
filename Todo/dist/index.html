@@ -10,23 +10,20 @@
     <link rel="stylesheet" href="./css/main.css">
     <div role="presentation">
       <h1>TODO App</h1>
-      <button id="add-list">Add new list</button>
-      <div class="form-popup glass-box hidden" id="add-list-form">
-        <form class="form-container">
-          <h2>Add new list</h2>
+      <div class="flex list-actions">
+        <button id="add-list">+ Add new list</button>
+        <div class="form-popup">
+          <form id="add-list-form" class="hidden form-container">
+            <input type="text" placeholder="Enter list name..." name="title" required>
 
-          <label for="title"><b>List Name</b></label>
-          <input type="text" placeholder="Enter list name..." name="title" required>
-
-          <div class="actions">
-            <button type="submit" class="btn">Add List</button>
-            <button type="button" id='add-list-form-cancel' class="btn cancel">×</button>
-          </div
-        </form>
+            <div class="actions">
+              <button type="submit" id="add-list-save" class="btn">Save</button>
+              <button type="button" id='add-list-form-cancel' class="btn cancel">× Cancel</button>
+            </div
+          </form>
+        </div>
       </div>
 
-      <nav id="project-nav">
-      </nav>
       <div id="content"></div>
     </div>
   </body>
