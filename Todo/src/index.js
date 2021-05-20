@@ -49,7 +49,7 @@ const openAddListModal = () => {
 }
 
 const updateStorage = (item) => {
-  localStorage.setItem(localStorage.length, item.getTitle());
+  localStorage.setItem(localStorage.length, JSON.stringify(item));
 
   regenerateLists();
 }
