@@ -70,3 +70,47 @@ input {
     padding: 10px;
   }
 }
+
+// navigation
+nav {
+  margin-top: 10px;
+  background: #f9f9f9;
+
+  .menuItems {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+
+    li {
+      padding: 20px;
+      text-decoration: none;
+      color: #8f8f8f;
+      font-size: 24px;
+      font-weight: 400;
+      transition: all 0.5s ease-in-out;
+      position: relative;
+      cursor: pointer;
+
+      &::before {
+        content: "";
+        transition: all 0.3s ease-in;
+        background-color: #8254ff;
+        position: absolute;
+        height: 0;
+        bottom: 0;
+        right: 0;
+        width: 2px;
+        overflow: hidden;
+      }
+
+      &:hover {
+        color: #8254ff;
+
+        &::before {
+          top: 0;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

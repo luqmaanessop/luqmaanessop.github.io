@@ -1,4 +1,4 @@
-import { listFactory } from './handleListAdd';
+import { listFactory } from './listFactory';
 import { regenerateLists } from './regenerateLists';
 
 // Initial event listener config
@@ -28,7 +28,6 @@ const openAddListModal = () => {
   addListForm.classList.toggle('hidden');
   addListForm.classList.toggle('flex');
 }
-
 
 const updateStorage = (item) => {
   localStorage.setItem(localStorage.length, item.getTitle());

@@ -10,23 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/handleListAdd.js":
-/*!******************************!*\
-  !*** ./src/handleListAdd.js ***!
-  \******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"listFactory\": () => (/* binding */ listFactory)\n/* harmony export */ });\nfunction listFactory(title) {\n  return {\n    title: title,\n    items: [],\n    getItems: function () {\n      return items\n    },\n    getTitle: function () {\n      return title\n    }\n  }\n}\n\n\n\n\n//# sourceURL=webpack://todo/./src/handleListAdd.js?");
-
-/***/ }),
-
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _handleListAdd__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./handleListAdd */ \"./src/handleListAdd.js\");\n/* harmony import */ var _regenerateLists__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./regenerateLists */ \"./src/regenerateLists.js\");\n\n\n\n// Initial event listener config\nwindow.addEventListener('load', function () {\n  document.getElementById(\"add-list\").addEventListener(\"click\", openAddListModal);\n  document.getElementById(\"add-list-form-cancel\").addEventListener(\"click\", openAddListModal);\n\n  // Handle submit book form\n  var form = document.querySelector(\"#add-list-form\");\n  form.addEventListener(\"submit\", function(evt) {\n    evt.preventDefault();\n    let title = evt.target[0].value;\n\n    let newListItem = (0,_handleListAdd__WEBPACK_IMPORTED_MODULE_0__.listFactory)(title);\n    // console.log(newListItem);\n\n    updateStorage(newListItem);\n  });\n\n  // Run showLists on window loadto show initial state\n  (0,_regenerateLists__WEBPACK_IMPORTED_MODULE_1__.regenerateLists)();\n})\n\n// Control visibility of the add list form\nconst openAddListModal = () => {\n  const addListForm = document.querySelector('#add-list-form');\n  addListForm.classList.toggle('hidden');\n  addListForm.classList.toggle('flex');\n}\n\n\nconst updateStorage = (item) => {\n  localStorage.setItem(localStorage.length, item.getTitle());\n\n  (0,_regenerateLists__WEBPACK_IMPORTED_MODULE_1__.regenerateLists)();\n}\n\n\n\n//# sourceURL=webpack://todo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _listFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./listFactory */ \"./src/listFactory.js\");\n/* harmony import */ var _regenerateLists__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./regenerateLists */ \"./src/regenerateLists.js\");\n\n\n\n// Initial event listener config\nwindow.addEventListener('load', function () {\n  document.getElementById(\"add-list\").addEventListener(\"click\", openAddListModal);\n  document.getElementById(\"add-list-form-cancel\").addEventListener(\"click\", openAddListModal);\n\n  // Handle submit book form\n  var form = document.querySelector(\"#add-list-form\");\n  form.addEventListener(\"submit\", function(evt) {\n    evt.preventDefault();\n    let title = evt.target[0].value;\n\n    let newListItem = (0,_listFactory__WEBPACK_IMPORTED_MODULE_0__.listFactory)(title);\n    // console.log(newListItem);\n\n    updateStorage(newListItem);\n  });\n\n  // Run showLists on window loadto show initial state\n  (0,_regenerateLists__WEBPACK_IMPORTED_MODULE_1__.regenerateLists)();\n})\n\n// Control visibility of the add list form\nconst openAddListModal = () => {\n  const addListForm = document.querySelector('#add-list-form');\n  addListForm.classList.toggle('hidden');\n  addListForm.classList.toggle('flex');\n}\n\nconst updateStorage = (item) => {\n  localStorage.setItem(localStorage.length, item.getTitle());\n\n  (0,_regenerateLists__WEBPACK_IMPORTED_MODULE_1__.regenerateLists)();\n}\n\n\n\n//# sourceURL=webpack://todo/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/listFactory.js":
+/*!****************************!*\
+  !*** ./src/listFactory.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"listFactory\": () => (/* binding */ listFactory)\n/* harmony export */ });\nfunction listFactory(title) {\n  return {\n    title: title,\n    items: [],\n    getItems: function () {\n      return items\n    },\n    getTitle: function () {\n      return title\n    }\n  }\n}\n\n\n\n\n//# sourceURL=webpack://todo/./src/listFactory.js?");
 
 /***/ }),
 
@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _han
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"regenerateLists\": () => (/* binding */ regenerateLists)\n/* harmony export */ });\nfunction regenerateLists() {\n  let OutputContent = document.getElementById(\"content\");\n  //Clear frontend div before repopulating\n  OutputContent.innerHTML = \"\";\n\n  for(let i = 0; i < localStorage.length; i++) {\n    const key = localStorage.key(i);\n    const value = localStorage.getItem(key);\n    OutputContent.innerHTML += `<div class=\"project-list\" id=${key}>${value}</div>`;\n  }\n}\n\n\n\n\n//# sourceURL=webpack://todo/./src/regenerateLists.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"regenerateLists\": () => (/* binding */ regenerateLists)\n/* harmony export */ });\nfunction regenerateLists() {\n  let OutputContent = document.getElementById(\"nav\");\n  //Clear frontend div before repopulating\n  OutputContent.innerHTML = \"\";\n\n  for(let i = 0; i < localStorage.length; i++) {\n    const key = localStorage.key(i);\n    const value = localStorage.getItem(key);\n    OutputContent.innerHTML += `<li class=\"project-list\" id=${key}>${value}</li>`;\n  }\n}\n\n\n\n\n//# sourceURL=webpack://todo/./src/regenerateLists.js?");
 
 /***/ })
 
