@@ -1,3 +1,5 @@
+$purple: #8254ff;
+
 // Layout settings
 div[role="presentation"] {
   font-family: open-sans, sans-serif;
@@ -10,6 +12,9 @@ div[role="presentation"] {
 body {
   background-color: #fff;
   color: grey;
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
 }
 
 .hidden {
@@ -19,42 +24,25 @@ body {
 .flex {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
+select,
+textarea,
 button,
 input {
   background-color: white;
   border: 1px solid black;
   padding: 10px 20px;
-  margin: 15px 10px 0 0;
+  margin: 5px 10px 0 0;
   max-height: 50px;
 }
 
-// glassbox styling
-.glass-box {
-  padding: 20px;
-  position: relative;
-  width: 250px;
-  height: 350px;
-  top: calc(50% - 175px);
-  left: calc(50% - 125px);
-  background: inherit;
-  border-radius: 2px;
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    width: 300px;
-    height: 300px;
-    background: inherit;
-    position: absolute;
-    left: -25px;
-    right: 0;
-    top: -25px;
-    bottom: 0;
-    box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.05);
-    filter: blur(10px);
-  }
+button:hover {
+  background-color: $purple;
+  color: #fff;
+  border-color: #fff;
+  transition: all 0.2s ease-in-out;
 }
 
 #content {
@@ -78,7 +66,6 @@ nav {
 
   .menuItems {
     list-style: none;
-    display: flex;
     padding-left: 0;
 
     li {
@@ -94,7 +81,7 @@ nav {
       &::before {
         content: "";
         transition: all 0.3s ease-in;
-        background-color: #8254ff;
+        background-color: $purple;
         position: absolute;
         height: 0;
         bottom: 0;
@@ -104,7 +91,7 @@ nav {
       }
 
       &:hover {
-        color: #8254ff;
+        color: $purple;
 
         &::before {
           top: 0;
@@ -113,4 +100,83 @@ nav {
       }
     }
   }
+}
+
+// Add item form
+#add-listItem-form {
+  label,
+  input {
+    display: block;
+  }
+
+  label {
+    margin-top: 20px;
+  }
+}
+
+//switch sliders
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: $purple;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px $purple;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+// form popup modal style
+.form-popup {
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  position: absolute;
+  background-color: lightgrey;
+  padding: 20%;
+  bottom: 0;
 }
