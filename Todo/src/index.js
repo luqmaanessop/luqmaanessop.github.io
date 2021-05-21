@@ -50,10 +50,9 @@ function regenerateOnClickProjectLists() {
 }
 
 const handleOnClickProjectList = (e) => {
+  // fetch clicked list, set the localStorage activeList key to it and run ShowActiveList to add the css class to display its activeness
   let activeListId = e.target.getAttribute("id");
   localStorage.setItem("activeList", activeListId);
-  console.log("hi from project-list");
-
   ShowActiveList();
 }
 
