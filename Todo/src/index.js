@@ -93,13 +93,10 @@ function regenerateOnClickProjectLists() {
 }
 
 const handleOnClickProjectList = (e) => {
-  // console.log("handleOnClickProjectList")
   // fetch clicked list, set the localStorage activeList key to it and run ShowActiveList to add the css class to display its activeness
   let activeListId = e.target.getAttribute("id");
   localStorage.setItem("activeList", activeListId);
   ShowActiveList();
-
-
 }
 
 const ShowActiveList = () => {
@@ -122,10 +119,6 @@ const ShowActiveListItems = () => {
   listOutput.innerHTML = "";
   let object = localStorage.getItem(localStorage.getItem("activeList"));
   let items = JSON.parse(object).items;
-  // console.log(items);
-
-  // console.log('retrievedObject: ', JSON.parse(object));
-  // let object = JSON.parse(retrievedObject);
 
   items.forEach(item => {
     console.log(item);
@@ -141,12 +134,8 @@ const openAddListModal = () => {
 }
 
 const updateStorage = (item) => {
-  // console.log("Doing a localstorage update");
-
   let key = localStorage.length == 0 ? 0 : localStorage.length - 1;
   let value = JSON.stringify(item);
-  // console.log("key: " + key);
-  // console.log("value: " + value);
 
   localStorage.setItem("activeList", key);
   localStorage.setItem(key, value);
