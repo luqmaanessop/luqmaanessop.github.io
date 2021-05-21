@@ -1,4 +1,4 @@
-function listItemFactory(title, dueDate, priority, notes, status) {
+function listItemFactory(title, notes, dueDate, priority, status) {
   return {
     title: title,
     dueDate: dueDate,

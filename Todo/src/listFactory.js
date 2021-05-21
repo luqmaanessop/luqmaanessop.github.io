@@ -7,6 +7,10 @@ function listFactory(title) {
     },
     getTitle: function () {
       return title
+    },
+    addItem: function(item) {
+      items.push(item);
+      return items;
     }
   }
 }
