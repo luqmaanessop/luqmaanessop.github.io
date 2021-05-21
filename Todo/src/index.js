@@ -22,11 +22,17 @@ window.addEventListener('load', function () {
       projectLists[i].addEventListener('click', event => {
         let activeListId = event.target.getAttribute("id");
         localStorage.setItem("activeList", activeListId);
+        console.log("hi from project-list")
+
+
+        ShowActiveList();
       })
     }
+
+
  }, 100);
 
-  // Handle submit book form
+  // Handle submit new list form
   var form = document.querySelector("#add-list-form");
   form.addEventListener("submit", function(evt) {
     evt.preventDefault();
@@ -35,11 +41,22 @@ window.addEventListener('load', function () {
     let newListItem = listFactory(title);
 
     updateStorage(newListItem);
+    openAddListModal();
   });
 
   // Run showLists on window loadto show initial state
   regenerateLists();
 })
+
+const ShowActiveList = () => {
+  const projectLists = document.getElementsByClassName('project-list');
+
+  for(let i = 0; i < projectLists.length; i++) {
+    projectLists[i].classList.remove('active');
+  }
+  // Set active class onto clicked item as checked by localStorage activeList string
+  projectLists[localStorage.getItem("activeList")].classList.add('active');;
+}
 
 // Control visibility of the add list form
 const openAddListModal = () => {

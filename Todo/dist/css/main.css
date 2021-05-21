@@ -43,9 +43,7 @@ button:hover {
   #content .project-list {
     font-size: 22px;
     margin: 10px 0;
-    cursor: pointer;
-    box-shadow: 0px 1px 5px #3f51b5;
-    padding: 10px; }
+    cursor: pointer; }
 
 nav {
   margin-top: 10px;
@@ -62,6 +60,9 @@ nav {
       transition: all 0.5s ease-in-out;
       position: relative;
       cursor: pointer; }
+      nav .menuItems li.active {
+        background-color: #8254ff;
+        color: white; }
       nav .menuItems li::before {
         content: "";
         transition: all 0.3s ease-in;
