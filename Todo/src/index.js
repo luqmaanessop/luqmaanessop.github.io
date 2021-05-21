@@ -15,22 +15,7 @@ window.addEventListener('load', function () {
   });
 
   // Add onclick to nav items to set localStorage current active list
-  setTimeout(function(){
-    const projectLists = document.getElementsByClassName('project-list');
-
-    for(let i = 0;i <= projectLists.length - 1 ; i++) {
-      projectLists[i].addEventListener('click', event => {
-        let activeListId = event.target.getAttribute("id");
-        localStorage.setItem("activeList", activeListId);
-        console.log("hi from project-list")
-
-
-        ShowActiveList();
-      })
-    }
-
-
- }, 100);
+  regenerateOnClickProjectLists();
 
   // Handle submit new list form
   var form = document.querySelector("#add-list-form");
@@ -41,12 +26,36 @@ window.addEventListener('load', function () {
     let newListItem = listFactory(title);
 
     updateStorage(newListItem);
+    regenerateOnClickProjectLists();
     openAddListModal();
   });
 
   // Run showLists on window loadto show initial state
   regenerateLists();
 })
+
+function regenerateOnClickProjectLists() {
+  // Add onclick to nav items to set localStorage current active list
+  setTimeout(function(){
+    const projectLists = document.getElementsByClassName('project-list');
+
+    for(let i = 0;i <= projectLists.length - 1 ; i++) {
+      projectLists[i].removeEventListener('click', handleOnClickProjectList );
+    }
+
+    for(let i = 0;i <= projectLists.length - 1 ; i++) {
+      projectLists[i].addEventListener('click', handleOnClickProjectList);
+    }
+  }, 100);
+}
+
+const handleOnClickProjectList = (e) => {
+  let activeListId = e.target.getAttribute("id");
+  localStorage.setItem("activeList", activeListId);
+  console.log("hi from project-list");
+
+  ShowActiveList();
+}
 
 const ShowActiveList = () => {
   const projectLists = document.getElementsByClassName('project-list');
@@ -66,8 +75,16 @@ const openAddListModal = () => {
 }
 
 const updateStorage = (item) => {
-  localStorage.setItem(localStorage.length, JSON.stringify(item));
+
+  let key = localStorage.length == 0 ? 0 : localStorage.length - 1;
+  let value = JSON.stringify(item);
+  // console.log("key: " + key);
+  // console.log("value: " + value);
+
+  localStorage.setItem("activeList", key);
+  localStorage.setItem(key, value);
 
   regenerateLists();
+  ShowActiveList();
 }
 
