@@ -7,6 +7,7 @@ import { ShowActiveListItems } from './ShowActiveListItems';
 window.addEventListener('load', function () {
   // handle opening/closing of adding forms
   document.getElementById("add-list").addEventListener("click", openAddListModal);
+  document.getElementById("remove-list").addEventListener("click", openRemoveListModal);
   document.getElementById("add-list-form-cancel").addEventListener("click", openAddListModal);
   document.getElementById("add-list-item").addEventListener("click", function(evt) {
     this.nextElementSibling.classList.toggle('hidden');
@@ -109,7 +110,7 @@ const ShowActiveList = () => {
       projectLists[i].classList.remove('active');
     }
     // Set active class onto clicked item as checked by localStorage activeList string
-    projectLists[localStorage.getItem("activeList")].classList.add('active');;
+    projectLists[localStorage.getItem("activeList")].classList.add('active');
   }
 
   ShowActiveListItems();
@@ -120,6 +121,17 @@ const openAddListModal = () => {
   const addListForm = document.querySelector('#add-list-form');
   addListForm.classList.toggle('hidden');
   addListForm.classList.toggle('flex');
+}
+
+const openRemoveListModal = () => {
+  console.log("remove list");
+
+  if (window.confirm("Do you really want to delete?")) {
+    // let object = localStorage.getItem(localStorage.getItem("activeList"));
+    localStorage.removeItem(localStorage.getItem("activeList"));
+    regenerateLists();
+    regenerateOnClickProjectLists();
+  }
 }
 
 const updateListStorage = (item) => {
