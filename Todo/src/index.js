@@ -1,6 +1,7 @@
 import { listFactory } from './listFactory';
 import { listItemFactory } from './listItemFactory';
 import { regenerateLists } from './regenerateLists';
+import { ShowActiveListItems } from './ShowActiveListItems';
 
 // Initial event listener config
 window.addEventListener('load', function () {
@@ -21,12 +22,12 @@ window.addEventListener('load', function () {
   const addListForm = document.getElementById("add-list-form");
   addListForm.addEventListener("submit", function(evt) {
     evt.preventDefault();
-    console.log(evt);
+    // console.log(evt);
     let title = evt.target[0].value;
 
     let newListItem = listFactory(title);
 
-    updateStorage(newListItem);
+    updateListStorage(newListItem);
     regenerateOnClickProjectLists();
     // close after adding new list
     openAddListModal();
@@ -55,6 +56,7 @@ const handleItemAddSubmit = () => {
   // Clear and close Item add form
   clearItemAddForm();
   closeAddItemForm();
+  ShowActiveListItems();
 }
 
 const closeAddItemForm = () => {
@@ -113,19 +115,6 @@ const ShowActiveList = () => {
   ShowActiveListItems();
 }
 
-const ShowActiveListItems = () => {
-  let listOutput = document.getElementById("items-container");
-  //Clear frontend div before repopulating
-  listOutput.innerHTML = "";
-  let object = localStorage.getItem(localStorage.getItem("activeList"));
-  let items = JSON.parse(object).items;
-
-  items.forEach(item => {
-    console.log(item);
-    listOutput.innerHTML += `<li class="item-todo">${item.title}</li>`
-  });
-}
-
 // Control visibility of the add list form
 const openAddListModal = () => {
   const addListForm = document.querySelector('#add-list-form');
@@ -133,7 +122,7 @@ const openAddListModal = () => {
   addListForm.classList.toggle('flex');
 }
 
-const updateStorage = (item) => {
+const updateListStorage = (item) => {
   let key = localStorage.length == 0 ? 0 : localStorage.length - 1;
   let value = JSON.stringify(item);
 

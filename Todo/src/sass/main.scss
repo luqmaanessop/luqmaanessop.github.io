@@ -38,11 +38,23 @@ input {
   max-height: 50px;
 }
 
+button.btn-radius {
+  border-radius: 15px;
+  padding: 8px 20px;
+  border-width: 2px;
+  border-color: $purple;
+  color: $purple;
+}
+
 button:hover {
   background-color: $purple;
   color: #fff;
   border-color: #fff;
   transition: all 0.2s ease-in-out;
+}
+
+#edit-item {
+  margin-left: 10px;
 }
 
 #content {
@@ -187,4 +199,24 @@ input:checked + .slider:before {
 // TODO listing
 #items-container {
   width: 100%;
+
+  .item-todo {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      background-color: $purple;
+
+      label,
+      span {
+        color: white;
+      }
+    }
+
+    label {
+      flex-grow: 1;
+    }
+  }
 }

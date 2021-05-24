@@ -30,11 +30,21 @@ input {
   margin: 5px 10px 0 0;
   max-height: 50px; }
 
+button.btn-radius {
+  border-radius: 15px;
+  padding: 8px 20px;
+  border-width: 2px;
+  border-color: #8254ff;
+  color: #8254ff; }
+
 button:hover {
   background-color: #8254ff;
   color: #fff;
   border-color: #fff;
   transition: all 0.2s ease-in-out; }
+
+#edit-item {
+  margin-left: 10px; }
 
 #content {
   margin-top: 40px;
@@ -145,3 +155,15 @@ input:checked + .slider:before {
 
 #items-container {
   width: 100%; }
+  #items-container .item-todo {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s ease-in-out; }
+    #items-container .item-todo:hover {
+      background-color: #8254ff; }
+      #items-container .item-todo:hover label,
+      #items-container .item-todo:hover span {
+        color: white; }
+    #items-container .item-todo label {
+      flex-grow: 1; }
