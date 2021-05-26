@@ -5,6 +5,18 @@ import { ShowActiveListItems } from './ShowActiveListItems';
 
 // Initial event listener config
 window.addEventListener('load', function () {
+  // Set default initial list if localStorage is empty on initial app load
+  let storage = localStorage.getItem("lists");
+  if(!storage) {
+    localStorage.setItem("lists", JSON.stringify([
+    {
+      "id": "0",
+      "title":"Default",
+      "items":[]
+    }
+    ]))
+  }
+
   // handle opening/closing of adding forms
   document.getElementById("add-list").addEventListener("click", openAddListModal);
   document.getElementById("remove-list").addEventListener("click", openRemoveListModal);
@@ -135,13 +147,26 @@ const openRemoveListModal = () => {
 }
 
 const updateListStorage = (item) => {
+  // console.log(item);
+
   let key = localStorage.length == 0 ? 0 : localStorage.length - 1;
   let value = JSON.stringify(item);
 
-  localStorage.setItem("activeList", key);
+  // console.log(value);
+  // let moddedList = JSON.parse(localStorage.getItem("lists"));
+  // console.log(moddedList);
   localStorage.setItem(key, value);
+
+  localStorage.setItem("activeList", key);
+  // localStorage.setItem("lists", moddedList);
 
   regenerateLists();
   ShowActiveList();
 }
 
+// Might need this to rekey the localStorage project ID
+// const rekeyLocalStorageList = () => {
+//   for(let x = 0; x <= localStorage.length; x++) {
+
+//   }
+// }
