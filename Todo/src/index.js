@@ -10,7 +10,6 @@ window.addEventListener('load', function () {
   if(!storage) {
     localStorage.setItem("lists", JSON.stringify([
     {
-      "id": "0",
       "title":"Default",
       "items":[]
     }
@@ -147,17 +146,18 @@ const openRemoveListModal = () => {
 }
 
 const updateListStorage = (item) => {
-  // console.log(item);
+  console.log(item);
 
-  let key = localStorage.length == 0 ? 0 : localStorage.length - 1;
-  let value = JSON.stringify(item);
+  // let key = localStorage.length == 0 ? 0 : localStorage.length - 1;
+  let value = item;
 
   // console.log(value);
-  // let moddedList = JSON.parse(localStorage.getItem("lists"));
+  let moddedList = JSON.parse(localStorage.getItem("lists"));
   // console.log(moddedList);
-  localStorage.setItem(key, value);
+  moddedList.push(value);
+  localStorage.setItem("lists", JSON.stringify(moddedList));
 
-  localStorage.setItem("activeList", key);
+  localStorage.setItem("activeList", moddedList.length - 1);
   // localStorage.setItem("lists", moddedList);
 
   regenerateLists();
