@@ -1,4 +1,7 @@
-$purple: #8254ff;
+$purple: #18005B;
+$prio-low: #ffb342c7;
+$prio-medium: #39c169c7;
+$prio-urgent: #ff000085;
 
 // Layout settings
 div[role="presentation"] {
@@ -207,16 +210,42 @@ input:checked + .slider:before {
     transition: all 0.5s ease-in-out;
 
     &:hover {
-      background-color: $purple;
-
-      label,
-      span {
-        color: white;
-      }
+      box-shadow: 0 0 2px grey;
     }
 
     label {
       flex-grow: 1;
     }
+  }
+}
+
+// prio styling
+.item-todo {
+  position: relative;
+  margin-bottom: 5px;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
+  &[data-prio="Low"]::after {
+    background-color: $prio-low;
+    right: 75%;
+  }
+
+  &[data-prio="Medium"]::after {
+    background-color: $prio-medium;
+    right: 50%;
+  }
+
+  &[data-prio="Urgent"]::after {
+    background-color: $prio-urgent;
+    right: 0;
   }
 }

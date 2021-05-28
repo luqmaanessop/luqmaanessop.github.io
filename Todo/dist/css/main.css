@@ -34,11 +34,11 @@ button.btn-radius {
   border-radius: 15px;
   padding: 8px 20px;
   border-width: 2px;
-  border-color: #8254ff;
-  color: #8254ff; }
+  border-color: #18005B;
+  color: #18005B; }
 
 button:hover {
-  background-color: #8254ff;
+  background-color: #18005B;
   color: #fff;
   border-color: #fff;
   transition: all 0.2s ease-in-out; }
@@ -71,12 +71,12 @@ nav {
       position: relative;
       cursor: pointer; }
       nav .menuItems li.active {
-        background-color: #8254ff;
+        background-color: #18005B;
         color: white; }
       nav .menuItems li::before {
         content: "";
         transition: all 0.3s ease-in;
-        background-color: #8254ff;
+        background-color: #18005B;
         position: absolute;
         height: 0;
         bottom: 0;
@@ -84,7 +84,7 @@ nav {
         width: 2px;
         overflow: hidden; }
       nav .menuItems li:hover {
-        color: #8254ff; }
+        color: #18005B; }
         nav .menuItems li:hover::before {
           top: 0;
           height: 100%; }
@@ -133,10 +133,10 @@ nav {
   transition: .4s; }
 
 input:checked + .slider {
-  background-color: #8254ff; }
+  background-color: #18005B; }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #8254ff; }
+  box-shadow: 0 0 1px #18005B; }
 
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
@@ -161,9 +161,27 @@ input:checked + .slider:before {
     align-items: center;
     transition: all 0.5s ease-in-out; }
     #items-container .item-todo:hover {
-      background-color: #8254ff; }
-      #items-container .item-todo:hover label,
-      #items-container .item-todo:hover span {
-        color: white; }
+      box-shadow: 0 0 2px grey; }
     #items-container .item-todo label {
       flex-grow: 1; }
+
+.item-todo {
+  position: relative;
+  margin-bottom: 5px; }
+  .item-todo::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1; }
+  .item-todo[data-prio="Low"]::after {
+    background-color: #ffb342c7;
+    right: 75%; }
+  .item-todo[data-prio="Medium"]::after {
+    background-color: #39c169c7;
+    right: 50%; }
+  .item-todo[data-prio="Urgent"]::after {
+    background-color: #ff000085;
+    right: 0; }
