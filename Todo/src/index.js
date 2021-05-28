@@ -73,10 +73,11 @@ const handleItemAddSubmit = () => {
 
   // let moddedList = JSON.parse(localStorage.getItem(activeListIndex));
   // modify items by adding to array
-  let moddedList = activeList.items.push(generatedItem);
+  activeList.items.push(generatedItem);
+  console.log("activeList.items");
   console.log(activeList.items);
   // console.log(activeList);
-  lists[activeListIndex] = moddedList;
+  lists[activeListIndex] = activeList;
   // localStorage.setItem(activeListInStorage, JSON.stringify(moddedList));
   localStorage.setItem("lists", JSON.stringify(lists));
   // Clear and close Item add form
@@ -124,6 +125,7 @@ function regenerateOnClickProjectLists() {
 }
 
 const handleOnClickProjectList = (e) => {
+  // console.log("clicked");
   // fetch clicked list, set the localStorage activeList key to it and run ShowActiveList to add the css class to display its activeness
   let activeListId = e.target.getAttribute("id");
   localStorage.setItem("activeList", activeListId);
@@ -141,6 +143,7 @@ const ShowActiveList = () => {
     projectLists[localStorage.getItem("activeList")].classList.add('active');
   }
 
+  // console.log("imhere");
   ShowActiveListItems();
 }
 

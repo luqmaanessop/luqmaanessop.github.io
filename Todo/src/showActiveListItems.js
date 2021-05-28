@@ -1,4 +1,4 @@
-function ShowActiveListItems() {
+function ShowActiveListItems() {=
   let listOutput = document.getElementById("items-container");
   //Clear frontend div before repopulating
   listOutput.innerHTML = "";
@@ -6,18 +6,15 @@ function ShowActiveListItems() {
   let activeListIndex = localStorage.getItem("activeList");
   let activeList = lists[activeListIndex];
 
-  // console.log(lists);
-  // console.log(activeListIndex);
-  // console.log(activeList);
+  for(let i = 0; i < activeList.items.length; i++) {
+    console.log(activeList.items[i]);
+    let title = activeList.items[i].title;
+    let priority = activeList.items[i].priority;
+    let status = activeList.items[i].status == "on" ? "" : "checked";
+    let duedate = activeList.items[i].dueDate == "" ? "When you get a chance" : activeList.items[i].dueDate;
 
-  // activeList.items.forEach((item, index) => {
-    // console.log(item);
-  //   let priority = item.priority;
-  //   let status = item.status == "on" ? "" : "checked";
-  //   let duedate = item.dueDate == "" ? "When you get a chance" : item.dueDate;
-
-  //   listOutput.innerHTML += `<div class="item-todo" data-prio="${priority}" ><label for="item-${index}"><input ${status} type="checkbox" id="item-${index}"></input>${item.title}</label><span><strong>Due: </strong>${duedate}</span><button class="btn-radius" id="edit-item" type="text">Edit</button></div>`
-  // });
+    listOutput.innerHTML += `<div class="item-todo" data-prio="${priority}" ><label for="item-${i}"><input ${status} type="checkbox" id="item-${i}"></input>${title}</label><span><strong>Due: </strong>${duedate}</span><button class="btn-radius" id="edit-item" type="text">Edit</button></div>`
+  }
 }
 
 export { ShowActiveListItems }
