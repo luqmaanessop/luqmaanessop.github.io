@@ -87,8 +87,11 @@ const clearItemAddForm = () => {
 const displayActiveListInForm = () => {
   const listName = document.getElementById("list-name");
   // fetch active list
-  let activeList = JSON.parse([localStorage.getItem(localStorage.getItem("activeList"))]).title;
-  listName.textContent = `Adding a new item to ${activeList}'s list`;
+  let lists = JSON.parse(localStorage.getItem("lists"));
+  let activeListIndex = localStorage.getItem("activeList");
+  let activeListTitle = lists[activeListIndex].title;
+  // let activeList = JSON.parse([localStorage.getItem(localStorage.getItem("activeList"))]).title;
+  listName.textContent = `Adding a new item to ${activeListTitle}'s list`;
 }
 
 function regenerateOnClickProjectLists() {
