@@ -248,4 +248,9 @@ input:checked + .slider:before {
     background-color: $prio-urgent;
     right: 0;
   }
+
+  &[data-prio="Complete"]::after {
+    background-color: #9e9e9e;
+    right: 0;
+  }
 }

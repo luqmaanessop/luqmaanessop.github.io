@@ -185,3 +185,6 @@ input:checked + .slider:before {
   .item-todo[data-prio="Urgent"]::after {
     background-color: #ff000085;
     right: 0; }
+  .item-todo[data-prio="Complete"]::after {
+    background-color: #9e9e9e;
+    right: 0; }

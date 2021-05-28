@@ -1,4 +1,4 @@
-function ShowActiveListItems() {=
+function ShowActiveListItems() {
   let listOutput = document.getElementById("items-container");
   //Clear frontend div before repopulating
   listOutput.innerHTML = "";

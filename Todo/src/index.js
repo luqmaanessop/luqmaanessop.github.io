@@ -16,7 +16,6 @@ window.addEventListener('load', function () {
     ]))
   }
 
-
   document.getElementById("destroy").addEventListener("click", function(evt) {
     localStorage.clear();
     location.reload();
@@ -121,6 +120,23 @@ function regenerateOnClickProjectLists() {
     for(let i = 0;i <= projectLists.length - 1 ; i++) {
       projectLists[i].addEventListener('click', handleOnClickProjectList);
     }
+  }, 100);
+}
+
+function regenerateOnClickProjectListItems () {
+  setTimeout(function(){
+    // TODO - get all the lists, iterate through them one by one and add onclick to each of their items in their item Array, might need two for loops here, when this is done - then you can handle the onclick on the item to update the status property and update local storage, then force a window reload to test it.
+
+
+    // const projectLists = document.getElementsByClassName('project-list');
+
+    // for(let i = 0;i <= projectLists.length - 1 ; i++) {
+    //   projectLists[i].removeEventListener('click', handleOnClickProjectList );
+    // }
+
+    // for(let i = 0;i <= projectLists.length - 1 ; i++) {
+    //   projectLists[i].addEventListener('click', handleOnClickProjectList);
+    // }
   }, 100);
 }
 
