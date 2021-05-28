@@ -18,7 +18,7 @@ window.addEventListener('load', function () {
 
   // handle opening/closing of adding forms
   document.getElementById("add-list").addEventListener("click", openAddListModal);
-  document.getElementById("remove-list").addEventListener("click", openRemoveListModal);
+  document.getElementById("remove-list").addEventListener("click", removeList);
   document.getElementById("add-list-form-cancel").addEventListener("click", openAddListModal);
   document.getElementById("add-list-item").addEventListener("click", function(evt) {
     this.nextElementSibling.classList.toggle('hidden');
@@ -39,7 +39,7 @@ window.addEventListener('load', function () {
 
     let newListItem = listFactory(title);
 
-    updateListStorage(newListItem);
+    addList(newListItem);
     regenerateOnClickProjectLists();
     // close after adding new list
     openAddListModal();
@@ -134,7 +134,7 @@ const openAddListModal = () => {
   addListForm.classList.toggle('flex');
 }
 
-const openRemoveListModal = () => {
+const removeList = () => {
   // Check if you really want to delete
   if (window.confirm("Do you really want to delete?")) {
     // Get active list, can only delete the list that is active - then splice it out and reset the list in localstorage
@@ -153,21 +153,13 @@ const openRemoveListModal = () => {
   }
 }
 
-const updateListStorage = (item) => {
-  let value = item;
-
+const addList = (item) => {
+  // get lists from localStorage, push new item in and regenerate frontend
   let moddedList = JSON.parse(localStorage.getItem("lists"));
-  moddedList.push(value);
+  moddedList.push(item);
   localStorage.setItem("lists", JSON.stringify(moddedList));
 
   localStorage.setItem("activeList", moddedList.length - 1);
   regenerateLists();
   ShowActiveList();
 }
-
-// Might need this to rekey the localStorage project ID
-// const rekeyLocalStorageList = () => {
-//   for(let x = 0; x <= localStorage.length; x++) {
-
-//   }
-// }
