@@ -38,7 +38,13 @@ input {
   border: 1px solid black;
   padding: 10px 20px;
   margin: 5px 10px 0 0;
-  max-height: 50px;
+}
+
+fieldset {
+  textarea {
+    display: inline-block;
+    width: 80%;
+  }
 }
 
 button.btn-radius {
@@ -75,14 +81,13 @@ button:hover {
 // navigation
 nav {
   margin-top: 10px;
-  background: #f9f9f9;
 
   .menuItems {
     list-style: none;
     padding-left: 0;
 
     li {
-      padding: 20px;
+      padding: 10px;
       text-decoration: none;
       color: #8f8f8f;
       font-size: 24px;
@@ -109,8 +114,6 @@ nav {
       }
 
       &:hover {
-        color: $purple;
-
         &::before {
           top: 0;
           height: 100%;
@@ -195,8 +198,16 @@ input:checked + .slider:before {
   z-index: 10;
   position: absolute;
   background-color: lightgrey;
-  padding: 20%;
+  padding: 2%;
   bottom: 0;
+
+  fieldset {
+    border: 0;
+  }
+
+  @media all and(min-width: 768px) {
+    padding: 20%;
+  }
 }
 
 // TODO listing
@@ -204,13 +215,21 @@ input:checked + .slider:before {
   width: 100%;
 
   .item-todo {
-    padding: 20px;
+    padding: 30px 15px;
     display: flex;
     align-items: center;
     transition: all 0.5s ease-in-out;
+    box-shadow: 0 0 2px grey;
 
     &:hover {
-      box-shadow: 0 0 2px grey;
+      box-shadow: 0 0 4px grey;
+    }
+
+    @media all and(max-width: 768px) {
+      .due-date {
+        position: absolute;
+        top: 10px;
+      }
     }
 
     label {
@@ -236,7 +255,7 @@ input:checked + .slider:before {
 
   &[data-prio="Low"]::after {
     background-color: $prio-low;
-    right: 75%;
+    right: 70%;
   }
 
   &[data-prio="Medium"]::after {
