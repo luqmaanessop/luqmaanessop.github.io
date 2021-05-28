@@ -16,6 +16,11 @@ window.addEventListener('load', function () {
     ]))
   }
 
+
+  document.getElementById("destroy").addEventListener("click", function(evt) {
+    localStorage.clear();
+    location.reload();
+  });
   // handle opening/closing of adding forms
   document.getElementById("add-list").addEventListener("click", openAddListModal);
   document.getElementById("remove-list").addEventListener("click", removeList);
@@ -59,12 +64,21 @@ const handleItemAddSubmit = () => {
 
   let generatedItem = listItemFactory(title, notes, duedate, priority, status);
   // fetch active list item, modify it and put it back in localstorage
-  let activeListInStorage = localStorage.getItem("activeList");
-  let moddedList = JSON.parse(localStorage.getItem(activeListInStorage));
-  // modify items by adding to array
-  moddedList.items.push(generatedItem);
-  localStorage.setItem(activeListInStorage, JSON.stringify(moddedList));
+  // let activeListInStorage = localStorage.getItem("activeList");
 
+  let lists = JSON.parse(localStorage.getItem("lists"));
+  let activeListIndex = localStorage.getItem("activeList");
+  let activeList = lists[activeListIndex];
+  // console.log(activeList);
+
+  // let moddedList = JSON.parse(localStorage.getItem(activeListIndex));
+  // modify items by adding to array
+  let moddedList = activeList.items.push(generatedItem);
+  console.log(activeList.items);
+  // console.log(activeList);
+  lists[activeListIndex] = moddedList;
+  // localStorage.setItem(activeListInStorage, JSON.stringify(moddedList));
+  localStorage.setItem("lists", JSON.stringify(lists));
   // Clear and close Item add form
   clearItemAddForm();
   closeAddItemForm();
