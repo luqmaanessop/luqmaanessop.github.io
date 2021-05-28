@@ -10,8 +10,8 @@ window.addEventListener('load', function () {
   if(!storage) {
     localStorage.setItem("lists", JSON.stringify([
     {
-      "title":"Default",
-      "items":[]
+      "title": "Default",
+      "items": [],
     }
     ]))
   }
@@ -135,31 +135,32 @@ const openAddListModal = () => {
 }
 
 const openRemoveListModal = () => {
-  console.log("remove list");
-
+  // Check if you really want to delete
   if (window.confirm("Do you really want to delete?")) {
-    // let object = localStorage.getItem(localStorage.getItem("activeList"));
-    localStorage.removeItem(localStorage.getItem("activeList"));
+    // Get active list, can only delete the list that is active - then splice it out and reset the list in localstorage
+    let activeList = localStorage.getItem("activeList");
+    let moddedList = JSON.parse(localStorage.getItem("lists"));
+    moddedList.splice(activeList, 1);
+    // resave to localStorage
+    localStorage.setItem("lists", JSON.stringify(moddedList));
+    // set active list to last list item
+    localStorage.setItem("activeList", moddedList.length - 1);
+
+    // Refresh frontend
     regenerateLists();
     regenerateOnClickProjectLists();
+    ShowActiveList();
   }
 }
 
 const updateListStorage = (item) => {
-  console.log(item);
-
-  // let key = localStorage.length == 0 ? 0 : localStorage.length - 1;
   let value = item;
 
-  // console.log(value);
   let moddedList = JSON.parse(localStorage.getItem("lists"));
-  // console.log(moddedList);
   moddedList.push(value);
   localStorage.setItem("lists", JSON.stringify(moddedList));
 
   localStorage.setItem("activeList", moddedList.length - 1);
-  // localStorage.setItem("lists", moddedList);
-
   regenerateLists();
   ShowActiveList();
 }
