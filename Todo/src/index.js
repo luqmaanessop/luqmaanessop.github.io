@@ -124,24 +124,44 @@ function regenerateOnClickProjectLists() {
 }
 
 function regenerateOnClickProjectListItems () {
-  setTimeout(function(){
-    // TODO - get all the lists, iterate through them one by one and add onclick to each of their items in their item Array, might need two for loops here, when this is done - then you can handle the onclick on the item to update the status property and update local storage, then force a window reload to test it.
+  setTimeout( function() {
+    const projectListItems = document.getElementsByClassName('item-todo');
 
+    for(let i = 0;i <= projectListItems.length - 1 ; i++) {
+      projectListItems[i].removeEventListener('click', handleOnClickProjectListItems);
+    }
 
-    // const projectLists = document.getElementsByClassName('project-list');
-
-    // for(let i = 0;i <= projectLists.length - 1 ; i++) {
-    //   projectLists[i].removeEventListener('click', handleOnClickProjectList );
-    // }
-
-    // for(let i = 0;i <= projectLists.length - 1 ; i++) {
-    //   projectLists[i].addEventListener('click', handleOnClickProjectList);
-    // }
+    for(let i = 0;i <= projectListItems.length - 1 ; i++) {
+      projectListItems[i].addEventListener('click', handleOnClickProjectListItems);
+    }
   }, 100);
 }
 
+const handleOnClickProjectListItems = (e) => {
+  if (e.target.nodeName === "LABEL") {
+    let status = !(e.target.children[0].checked);
+    let itemId = e.target.children[0].id.substring(e.target.children[0].id.length - 1);
+    console.dir(status);
+    console.dir(itemId);
+
+    // Get active list - update status property of clicked item
+    // let lists = JSON.parse(localStorage.getItem("lists"));
+    // let activeList = lists[activeListIndex];
+
+    // let activeListIndex = localStorage.getItem("activeList");
+    // let moddedList = JSON.parse(localStorage.getItem("lists"));
+
+    // moddedList.splice(activeList, 1);
+
+
+  } else {
+    // stop propagation on the input click itself
+    e.stopPropagation();
+    return false;
+  }
+}
+
 const handleOnClickProjectList = (e) => {
-  // console.log("clicked");
   // fetch clicked list, set the localStorage activeList key to it and run ShowActiveList to add the css class to display its activeness
   let activeListId = e.target.getAttribute("id");
   localStorage.setItem("activeList", activeListId);
@@ -161,6 +181,7 @@ const ShowActiveList = () => {
 
   // console.log("imhere");
   ShowActiveListItems();
+  regenerateOnClickProjectListItems();
 }
 
 // Control visibility of the add list form

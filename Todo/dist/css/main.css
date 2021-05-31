@@ -161,7 +161,6 @@ input:checked + .slider:before {
 #items-container {
   width: 100%; }
   #items-container .item-todo {
-    padding: 30px 15px;
     display: flex;
     align-items: center;
     transition: all 0.5s ease-in-out;
@@ -173,7 +172,8 @@ input:checked + .slider:before {
         position: absolute;
         top: 10px; } }
     #items-container .item-todo label {
-      flex-grow: 1; }
+      flex-grow: 1;
+      padding: 20px; }
 
 .item-todo {
   position: relative;
