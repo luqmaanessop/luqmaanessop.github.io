@@ -10,10 +10,11 @@ window.addEventListener('load', function () {
   if(!storage) {
     localStorage.setItem("lists", JSON.stringify([
     {
-      "title": "Default",
+      "title": "General Todo's",
       "items": [],
     }
-    ]))
+    ]));
+    localStorage.setItem("activeList", "0")
   }
 
   document.getElementById("destroy").addEventListener("click", function(evt) {
@@ -38,7 +39,6 @@ window.addEventListener('load', function () {
   const addListForm = document.getElementById("add-list-form");
   addListForm.addEventListener("submit", function(evt) {
     evt.preventDefault();
-    // console.log(evt);
     let title = evt.target[0].value;
 
     let newListItem = listFactory(title);
@@ -59,35 +59,35 @@ const handleItemAddSubmit = () => {
   const notes = document.getElementById("notes").value;
   const duedate = document.getElementById("duedate").value;
   const priority = document.getElementById("priority").value;
-  const status = document.getElementById("status").value;
+  const status = document.getElementById("status").checked;
 
-  let generatedItem = listItemFactory(title, notes, duedate, priority, status);
-  // fetch active list item, modify it and put it back in localstorage
-  // let activeListInStorage = localStorage.getItem("activeList");
+  if(!title) {
+    alert("Try again - you at least need an item title, the rest you can edit afterwards");
+  } else {
+    let generatedItem = listItemFactory(title, notes, duedate, priority, status);
+    // fetch active list item, modify it and put it back in localstorage
+    let lists = JSON.parse(localStorage.getItem("lists"));
+    let activeListIndex = localStorage.getItem("activeList");
+    let activeList = lists[activeListIndex];
 
-  let lists = JSON.parse(localStorage.getItem("lists"));
-  let activeListIndex = localStorage.getItem("activeList");
-  let activeList = lists[activeListIndex];
-  // console.log(activeList);
+    // let moddedList = JSON.parse(localStorage.getItem(activeListIndex));
+    // modify items by adding to array
+    activeList.items.push(generatedItem);
+    lists[activeListIndex] = activeList;
+    localStorage.setItem("lists", JSON.stringify(lists));
+    // Clear and close Item add form
+    closeAddItemForm();
+    ShowActiveListItems();
+    regenerateOnClickProjectListItems()
+  }
 
-  // let moddedList = JSON.parse(localStorage.getItem(activeListIndex));
-  // modify items by adding to array
-  activeList.items.push(generatedItem);
-  console.log("activeList.items");
-  console.log(activeList.items);
-  // console.log(activeList);
-  lists[activeListIndex] = activeList;
-  // localStorage.setItem(activeListInStorage, JSON.stringify(moddedList));
-  localStorage.setItem("lists", JSON.stringify(lists));
-  // Clear and close Item add form
-  clearItemAddForm();
-  closeAddItemForm();
-  ShowActiveListItems();
 }
 
 const closeAddItemForm = () => {
   const formItemList = document.querySelector('#add-listItem-form').offsetParent;
   formItemList.classList.toggle('hidden');
+
+  clearItemAddForm();
 }
 
 const clearItemAddForm = () => {
@@ -95,7 +95,9 @@ const clearItemAddForm = () => {
   document.getElementById("notes").value = "";
   document.getElementById("duedate").value = "";
   document.getElementById("priority").value = "";
-  document.getElementById("status").value = "";
+  document.getElementById("status").checked = false;
+
+  // location.reload();
 }
 
 const displayActiveListInForm = () => {
@@ -123,7 +125,7 @@ function regenerateOnClickProjectLists() {
   }, 100);
 }
 
-function regenerateOnClickProjectListItems () {
+function regenerateOnClickProjectListItems() {
   setTimeout( function() {
     const projectListItems = document.getElementsByClassName('item-todo');
 
@@ -141,21 +143,15 @@ const handleOnClickProjectListItems = (e) => {
   if (e.target.nodeName === "LABEL") {
     let status = !(e.target.children[0].checked);
     let itemId = e.target.children[0].id.substring(e.target.children[0].id.length - 1);
-    console.dir(status);
-    console.dir(itemId);
+    let moddedList = JSON.parse(localStorage.getItem("lists"));
+    let activeListIndex = localStorage.getItem("activeList");
 
-    // Get active list - update status property of clicked item
-    // let lists = JSON.parse(localStorage.getItem("lists"));
-    // let activeList = lists[activeListIndex];
-
-    // let activeListIndex = localStorage.getItem("activeList");
-    // let moddedList = JSON.parse(localStorage.getItem("lists"));
-
-    // moddedList.splice(activeList, 1);
-
-
+    // Find target list item in active list - update its status and commit to localStorage
+    moddedList[activeListIndex].items[itemId].status = status;
+    localStorage.setItem("lists", JSON.stringify(moddedList));
+    location.reload();
   } else {
-    // stop propagation on the input click itself
+    // Stop propagation on the input click itself
     e.stopPropagation();
     return false;
   }
@@ -179,7 +175,6 @@ const ShowActiveList = () => {
     projectLists[localStorage.getItem("activeList")].classList.add('active');
   }
 
-  // console.log("imhere");
   ShowActiveListItems();
   regenerateOnClickProjectListItems();
 }

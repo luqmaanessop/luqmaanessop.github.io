@@ -7,13 +7,13 @@ function ShowActiveListItems() {
   let activeList = lists[activeListIndex];
 
   for(let i = 0; i < activeList.items.length; i++) {
-    console.log(activeList.items[i]);
     let title = activeList.items[i].title;
     let priority = activeList.items[i].priority;
-    let status = activeList.items[i].status == "on" ? "" : "checked";
+    let status = activeList.items[i].status === true ? "checked" : "";
+    let isComplete = activeList.items[i].status === true ? "complete" : "";
     let duedate = activeList.items[i].dueDate == "" ? "When you get a chance" : activeList.items[i].dueDate;
 
-    listOutput.innerHTML += `<div class="item-todo" data-prio="${priority}" ><label for="item-${i}"><input ${status} type="checkbox" id="item-${i}"></input>${title}</label><span class="due-date"><strong>Due: </strong>${duedate}</span><button class="btn-radius" id="edit-item" type="text">Edit</button></div>`
+    listOutput.innerHTML += `<div ${isComplete} class="item-todo" data-prio="${priority}" ><label for="item-${i}"><input ${status} type="checkbox" id="item-${i}"></input>${title}</label><span class="due-date"><strong>Due: </strong>${duedate}</span><button class="btn-radius" id="edit-item" type="text">Edit</button></div>`
   }
 }
 
