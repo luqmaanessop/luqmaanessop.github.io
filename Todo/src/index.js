@@ -18,8 +18,10 @@ window.addEventListener('load', function () {
   }
 
   document.getElementById("destroy").addEventListener("click", function(evt) {
-    localStorage.clear();
-    location.reload();
+    if (window.confirm("This will destroy EVERYTHING, are you sure? you will be left with an empty general list")) {
+      localStorage.clear();
+      location.reload();
+    }
   });
   // handle opening/closing of adding forms
   document.getElementById("add-list").addEventListener("click", openAddListModal);

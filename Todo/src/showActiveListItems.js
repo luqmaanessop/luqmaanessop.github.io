@@ -6,6 +6,10 @@ function ShowActiveListItems() {
   let activeListIndex = localStorage.getItem("activeList");
   let activeList = lists[activeListIndex];
 
+  if(activeList.items.length == 0) {
+    console.log("empty")
+    listOutput.innerHTML += "<div>The list is empty</div>";
+  }
   for(let i = 0; i < activeList.items.length; i++) {
     let title = activeList.items[i].title;
     let priority = activeList.items[i].priority;

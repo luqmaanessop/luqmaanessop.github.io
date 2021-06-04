@@ -1,7 +1,7 @@
 $purple: #18005B;
 $prio-low: #ffb342c7;
 $prio-medium: #39c169c7;
-$prio-urgent: #ff000085;
+$prio-urgent: #382020;
 
 // Layout settings
 div[role="presentation"] {
@@ -44,6 +44,7 @@ input {
   border: 1px solid black;
   padding: 10px 20px;
   margin: 5px 10px 0 0;
+  font-size: 16px;
 }
 
 fieldset {
@@ -62,9 +63,10 @@ button.btn-radius {
 }
 
 button:hover {
-  background-color: $purple;
-  color: #fff;
-  border-color: #fff;
+  // background-color: $purple;
+  // color: #fff;
+  border-color: $purple;
+  box-shadow: 0 0 2px $purple;
   transition: all 0.2s ease-in-out;
 }
 
@@ -87,25 +89,34 @@ button:hover {
 // navigation
 nav {
   margin-top: 10px;
+  border-bottom: 2px solid $purple;
+
+  @media all and(max-width: 768px) {
+    margin-top: 30px;
+  }
 
   .menuItems {
     list-style: none;
     padding-left: 0;
+    margin-bottom: 0;
 
     li {
+      border: 2px solid $purple;
+      border-bottom: 0;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
       padding: 10px;
       text-decoration: none;
-      font-size: 24px;
+      font-size: 16px;
       font-weight: 400;
       transition: all 0.5s ease-in-out;
       position: relative;
       cursor: pointer;
       margin-right: 15px;
-      box-shadow: 0 0 1px $purple;
       color: $purple;
 
       &.active {
-        box-shadow: 0 0 3px $purple;
+        box-shadow: 0 0 1px $purple;
       }
 
       &:hover {
@@ -189,9 +200,12 @@ input:checked + .slider:before {
   right: 0;
   z-index: 10;
   position: absolute;
-  background-color: lightgrey;
   padding: 2%;
-  bottom: 0;
+  background: rgba(255, 255, 255, 0.25 );
+  // box-shadow: 0 8px 54px 0 rgba(31 38 135 / 38%);
+  backdrop-filter: blur(34px);
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
 
   fieldset {
     border: 0;
@@ -282,9 +296,15 @@ input:checked + .slider:before {
     right: 50%;
   }
 
-  &[data-prio="Urgent"]::after {
-    background-color: $prio-urgent;
-    right: 0;
+  &[data-prio="Urgent"] {
+    &::after {
+      background-color: $prio-urgent;
+      right: 0;
+    }
+
+    .due-date {
+      color: white;
+    }
   }
 
   &[data-prio="Complete"]::after {
@@ -294,9 +314,22 @@ input:checked + .slider:before {
 }
 
 #destroy {
-  background-color: #ff000085;
+  background-color: $prio-urgent;
   color: white;
   border: 0;
   font-size: 19px;
   border-radius: 5px;
+
+  @media all and(max-width: 768px) {
+    margin-bottom: 25px;
+  }
+}
+
+.list-actions,
+#add-list-form {
+  @media all and(max-width: 768px) {
+    & > * {
+      width: 100%;
+    }
+  }
 }
