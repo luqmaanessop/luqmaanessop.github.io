@@ -61,6 +61,15 @@ const openAddListItemModal = (operation, itemId) => {
   console.log(operation);
   console.log(itemId);
 
+  // call handleItemAddSubmit function conditionally - figure this out
+  // Do two seperate submit buttons on the actual item form and toggle visibility as needed from here.
+  if(operation === "add") {
+    // hide the edit submit button
+  }
+  if(operation === "edit") {
+    // hide the add submit button and show the edit submit button, think of a ternirary operator here, then head back up to the top and add a submit handler for the edit on click
+  }
+
   // TODO - get itemId here find it in localStorage under active list - then pull out its data and prefill the edit form.
 
   // On save of the form it needs to handle by checking whether it should update an existing item or create a new one - difference between fetching or Array.add
