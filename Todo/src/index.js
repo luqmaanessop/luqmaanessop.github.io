@@ -28,8 +28,7 @@ window.addEventListener('load', function () {
   document.getElementById("remove-list").addEventListener("click", removeList);
   document.getElementById("add-list-form-cancel").addEventListener("click", openAddListModal);
   document.getElementById("add-list-item").addEventListener("click", function(evt) {
-    this.nextElementSibling.classList.toggle('hidden');
-
+    openAddListItemModal("add", null);
     displayActiveListInForm();
   });
   document.getElementById("add-list-item-form-cancel").addEventListener("click", closeAddItemForm, false);
@@ -55,6 +54,19 @@ window.addEventListener('load', function () {
   regenerateLists();
   ShowActiveList();
 })
+
+const openAddListItemModal = (operation, itemId) => {
+  document.getElementById("item-form-popup").classList.toggle('hidden');
+
+  console.log(operation);
+  console.log(itemId);
+
+  // TODO - get itemId here find it in localStorage under active list - then pull out its data and prefill the edit form.
+
+  // On save of the form it needs to handle by checking whether it should update an existing item or create a new one - difference between fetching or Array.add
+
+  // handleItemAddSubmit is the function to check here below this after submitting - prefill
+}
 
 const handleItemAddSubmit = () => {
   const title = document.getElementById("item-title").value;
@@ -98,8 +110,6 @@ const clearItemAddForm = () => {
   document.getElementById("duedate").value = "";
   document.getElementById("priority").value = "";
   document.getElementById("status").checked = false;
-
-  // location.reload();
 }
 
 const displayActiveListInForm = () => {
@@ -108,7 +118,6 @@ const displayActiveListInForm = () => {
   let lists = JSON.parse(localStorage.getItem("lists"));
   let activeListIndex = localStorage.getItem("activeList");
   let activeListTitle = lists[activeListIndex].title;
-  // let activeList = JSON.parse([localStorage.getItem(localStorage.getItem("activeList"))]).title;
   listName.textContent = `Adding a new item to ${activeListTitle}'s list`;
 }
 
@@ -142,12 +151,14 @@ function regenerateOnClickProjectListItems() {
 }
 
 const handleOnClickProjectListItems = (e) => {
-  console.dir(e.target.id);
+  console.dir(e.target);
 
   // if edit button is clicked  - reopen the item add form with prefilled fields
   // attach node to form call to distinguish its and edit not an add
   if(e.target.id === "edit-item") {
 
+    let itemEditId = e.target.parentNode.children[0].children[0].id.substring(e.target.parentNode.children[0].children[0].id.length -1);
+    openAddListItemModal("edit", itemEditId);
   }
   if (e.target.nodeName === "LABEL") {
     let status = !(e.target.children[0].checked);
