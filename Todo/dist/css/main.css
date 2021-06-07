@@ -1,5 +1,4 @@
 div[role="presentation"] {
-  font-family: open-sans, sans-serif;
   max-width: 1440px;
   box-sizing: border-box;
   padding: 10px;
@@ -11,6 +10,7 @@ div[role="presentation"] {
       margin: 50px; } }
 
 body {
+  font-family: 'Bangers', cursive;
   background-color: #fff;
   color: grey;
   position: relative;
@@ -30,10 +30,12 @@ textarea,
 button,
 input {
   background-color: white;
-  border: 1px solid black;
+  border: 2px solid black;
   padding: 10px 20px;
   margin: 5px 10px 0 0;
-  font-size: 16px; }
+  font-size: 16px;
+  font-family: 'Bangers', cursive;
+  letter-spacing: 1px; }
 
 fieldset textarea {
   display: inline-block;
@@ -81,14 +83,16 @@ nav {
       padding: 10px;
       text-decoration: none;
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 200;
       transition: all 0.5s ease-in-out;
       position: relative;
       cursor: pointer;
       margin-right: 15px;
       color: #18005B; }
       nav .menuItems li.active {
-        box-shadow: 0 0 1px #18005B; }
+        box-shadow: 0 0 1px #18005B;
+        background-color: #18005B;
+        color: white; }
       nav .menuItems li:hover {
         box-shadow: 0 0 5px #18005B; }
 
@@ -164,7 +168,8 @@ input:checked + .slider:before {
       padding: 20%; } }
 
 #items-container {
-  width: 100%; }
+  width: 100%;
+  min-height: 100px; }
   #items-container .item-todo {
     display: flex;
     align-items: center;
@@ -216,7 +221,7 @@ input:checked + .slider:before {
     background-color: #39c169c7;
     right: 50%; }
   .item-todo[data-prio="Urgent"]::after {
-    background-color: #382020;
+    background-color: #e91f1f;
     right: 0; }
   .item-todo[data-prio="Urgent"] .due-date {
     color: white; }
@@ -225,7 +230,7 @@ input:checked + .slider:before {
     right: 0; }
 
 #destroy {
-  background-color: #382020;
+  background-color: #e91f1f;
   color: white;
   border: 0;
   font-size: 19px;

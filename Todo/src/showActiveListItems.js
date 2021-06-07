@@ -8,7 +8,7 @@ function ShowActiveListItems() {
 
   if(activeList.items.length == 0) {
     console.log("empty")
-    listOutput.innerHTML += "<div>The list is empty</div>";
+    listOutput.innerHTML += "<div>This list is empty</div>";
   }
   for(let i = 0; i < activeList.items.length; i++) {
     let title = activeList.items[i].title;

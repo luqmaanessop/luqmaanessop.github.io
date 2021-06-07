@@ -2,10 +2,10 @@ $purple: #18005B;
 $prio-low: #ffb342c7;
 $prio-medium: #39c169c7;
 $prio-urgent: #382020;
+$prio-red: #e91f1f;
 
 // Layout settings
 div[role="presentation"] {
-  font-family: open-sans, sans-serif;
   max-width: 1440px;
   box-sizing: border-box;
   padding: 10px;
@@ -19,6 +19,7 @@ div[role="presentation"] {
 }
 
 body {
+  font-family: 'Bangers', cursive;
   background-color: #fff;
   color: grey;
   position: relative;
@@ -41,10 +42,12 @@ textarea,
 button,
 input {
   background-color: white;
-  border: 1px solid black;
+  border: 2px solid black;
   padding: 10px 20px;
   margin: 5px 10px 0 0;
   font-size: 16px;
+  font-family: 'Bangers', cursive;
+  letter-spacing: 1px;
 }
 
 fieldset {
@@ -108,7 +111,7 @@ nav {
       padding: 10px;
       text-decoration: none;
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 200;
       transition: all 0.5s ease-in-out;
       position: relative;
       cursor: pointer;
@@ -117,6 +120,8 @@ nav {
 
       &.active {
         box-shadow: 0 0 1px $purple;
+        background-color: $purple;
+        color: white;
       }
 
       &:hover {
@@ -219,6 +224,7 @@ input:checked + .slider:before {
 // TODO listing
 #items-container {
   width: 100%;
+  min-height: 100px;
 
   .item-todo {
     display: flex;
@@ -298,7 +304,7 @@ input:checked + .slider:before {
 
   &[data-prio="Urgent"] {
     &::after {
-      background-color: $prio-urgent;
+      background-color: $prio-red;
       right: 0;
     }
 
@@ -314,7 +320,7 @@ input:checked + .slider:before {
 }
 
 #destroy {
-  background-color: $prio-urgent;
+  background-color: $prio-red;
   color: white;
   border: 0;
   font-size: 19px;
