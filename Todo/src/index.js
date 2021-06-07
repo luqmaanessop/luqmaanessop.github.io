@@ -142,6 +142,13 @@ function regenerateOnClickProjectListItems() {
 }
 
 const handleOnClickProjectListItems = (e) => {
+  console.dir(e.target.id);
+
+  // if edit button is clicked  - reopen the item add form with prefilled fields
+  // attach node to form call to distinguish its and edit not an add
+  if(e.target.id === "edit-item") {
+
+  }
   if (e.target.nodeName === "LABEL") {
     let status = !(e.target.children[0].checked);
     let itemId = e.target.children[0].id.substring(e.target.children[0].id.length - 1);

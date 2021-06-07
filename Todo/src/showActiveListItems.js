@@ -7,7 +7,6 @@ function ShowActiveListItems() {
   let activeList = lists[activeListIndex];
 
   if(activeList.items.length == 0) {
-    console.log("empty")
     listOutput.innerHTML += "<div>This list is empty</div>";
   }
   for(let i = 0; i < activeList.items.length; i++) {
