@@ -1,4 +1,4 @@
-$purple: #18005B;
+$purple: #18005b;
 $prio-low: #ffb342c7;
 $prio-medium: #39c169c7;
 $prio-urgent: #382020;
@@ -172,8 +172,7 @@ nav {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .slider:after {

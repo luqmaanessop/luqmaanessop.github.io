@@ -83,7 +83,6 @@ const openAddListItemModal = (operation, itemId) => {
     document.getElementById("add-list-item-save").classList.contains('hidden') === false ? document.getElementById("add-list-item-save").classList.add('hidden') : "";
     document.getElementById("add-list-item-update-save").classList.remove('hidden');
 
-
     // Prefill form fields because its an edit
     document.getElementById("item-title").value =
     moddedList[activeListIndex].items[itemId].title;
@@ -109,7 +108,6 @@ const handleItemAddSubmit = () => {
   const duedate = document.getElementById("duedate").value;
   const priority = document.getElementById("priority").value;
   const status = document.getElementById("status").checked;
-
 
   if(!title) {
     alert("Try again - you at least need an item title, the rest you can edit afterwards");
@@ -138,7 +136,6 @@ const handleItemAddSubmit = () => {
   closeAddItemForm();
   ShowActiveListItems();
   regenerateOnClickProjectListItems()
-
 }
 
 const closeAddItemForm = () => {
@@ -163,7 +160,7 @@ const displayActiveListInForm = () => {
   let lists = JSON.parse(localStorage.getItem("lists"));
   let activeListIndex = localStorage.getItem("activeList");
   let activeListTitle = lists[activeListIndex].title;
-  listName.textContent = `Adding a new item to ${activeListTitle}'s list`;
+  listName.textContent = `Active list: ${activeListTitle}`;
 }
 
 function regenerateOnClickProjectLists() {

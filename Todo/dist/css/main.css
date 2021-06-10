@@ -2,7 +2,7 @@ div[role="presentation"] {
   max-width: 1440px;
   box-sizing: border-box;
   padding: 10px;
-  box-shadow: 0 0 3px #18005B;
+  box-shadow: 0 0 3px #18005b;
   margin: 15px; }
   @media all and (min-width: 1280px) {
     div[role="presentation"] {
@@ -45,19 +45,19 @@ button.btn-radius {
   border-radius: 15px;
   padding: 8px 20px;
   border-width: 2px;
-  border-color: #18005B;
-  color: #18005B; }
+  border-color: #18005b;
+  color: #18005b; }
 
 button:hover {
-  border-color: #18005B;
-  box-shadow: 0 0 2px #18005B;
+  border-color: #18005b;
+  box-shadow: 0 0 2px #18005b;
   transition: all 0.2s ease-in-out; }
 
 #edit-item {
   cursor: pointer;
   margin-left: 10px; }
   #edit-item:hover {
-    background-color: #18005B;
+    background-color: #18005b;
     color: white; }
 
 #content {
@@ -71,7 +71,7 @@ button:hover {
 
 nav {
   margin-top: 10px;
-  border-bottom: 2px solid #18005B; }
+  border-bottom: 2px solid #18005b; }
   @media all and (max-width: 768px) {
     nav {
       margin-top: 30px; } }
@@ -80,7 +80,7 @@ nav {
     padding-left: 0;
     margin-bottom: 0; }
     nav .menuItems li {
-      border: 2px solid #18005B;
+      border: 2px solid #18005b;
       border-bottom: 0;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
@@ -92,13 +92,13 @@ nav {
       position: relative;
       cursor: pointer;
       margin-right: 15px;
-      color: #18005B; }
+      color: #18005b; }
       nav .menuItems li.active {
-        box-shadow: 0 0 1px #18005B;
-        background-color: #18005B;
+        box-shadow: 0 0 1px #18005b;
+        background-color: #18005b;
         color: white; }
       nav .menuItems li:hover {
-        box-shadow: 0 0 5px #18005B; }
+        box-shadow: 0 0 5px #18005b; }
 
 #add-listItem-form label,
 #add-listItem-form input {
@@ -129,8 +129,7 @@ nav {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s; }
+  transition: 0.4s; }
 
 .slider:after {
   position: absolute;
@@ -144,10 +143,10 @@ nav {
   transition: .4s; }
 
 input:checked + .slider {
-  background-color: #18005B; }
+  background-color: #18005b; }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #18005B; }
+  box-shadow: 0 0 1px #18005b; }
 
 input:checked + .slider:after {
   -webkit-transform: translateX(26px);
