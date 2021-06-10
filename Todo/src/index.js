@@ -33,6 +33,8 @@ window.addEventListener('load', function () {
   });
   document.getElementById("add-list-item-form-cancel").addEventListener("click", closeAddItemForm, false);
   document.getElementById("add-list-item-save").addEventListener("click", handleItemAddSubmit, false);
+  document.getElementById("add-list-item-update-save").addEventListener("click", handleItemAddSubmit, false);
+
   // Add onclick to nav items to set localStorage current active list
   regenerateOnClickProjectLists();
 
@@ -56,53 +58,86 @@ window.addEventListener('load', function () {
 })
 
 const openAddListItemModal = (operation, itemId) => {
-  document.getElementById("item-form-popup").classList.toggle('hidden');
+  const form = document.getElementById("item-form-popup");
+  form.classList.toggle('hidden');
 
   console.log(operation);
   console.log(itemId);
+
+  if(itemId) {
+    form.setAttribute("data-edit", itemId);
+  }
 
   // call handleItemAddSubmit function conditionally - figure this out
   // Do two seperate submit buttons on the actual item form and toggle visibility as needed from here.
   if(operation === "add") {
     // hide the edit submit button
+    document.getElementById("add-list-item-update-save").classList.contains('hidden') === false ? document.getElementById("add-list-item-update-save").classList.add('hidden') : "";
+    document.getElementById("add-list-item-save").classList.remove('hidden');
   }
   if(operation === "edit") {
-    // hide the add submit button and show the edit submit button, think of a ternirary operator here, then head back up to the top and add a submit handler for the edit on click
+    let moddedList = JSON.parse(localStorage.getItem("lists"));
+    let activeListIndex = localStorage.getItem("activeList");
+
+    // Hide and show relevant save buttons
+    document.getElementById("add-list-item-save").classList.contains('hidden') === false ? document.getElementById("add-list-item-save").classList.add('hidden') : "";
+    document.getElementById("add-list-item-update-save").classList.remove('hidden');
+
+
+    // Prefill form fields because its an edit
+    document.getElementById("item-title").value =
+    moddedList[activeListIndex].items[itemId].title;
+
+    document.getElementById("notes").value =
+    moddedList[activeListIndex].items[itemId].notes;
+
+    document.getElementById("duedate").value =
+    moddedList[activeListIndex].items[itemId].dueDate;
+
+    document.getElementById("priority").value =
+    moddedList[activeListIndex].items[itemId].priority;
+
+    document.getElementById("status").checked =
+    moddedList[activeListIndex].items[itemId].status;
   }
-
-  // TODO - get itemId here find it in localStorage under active list - then pull out its data and prefill the edit form.
-
-  // On save of the form it needs to handle by checking whether it should update an existing item or create a new one - difference between fetching or Array.add
-
-  // handleItemAddSubmit is the function to check here below this after submitting - prefill
 }
 
 const handleItemAddSubmit = () => {
+  const editId = document.getElementById("item-form-popup").getAttribute("data-edit");
   const title = document.getElementById("item-title").value;
   const notes = document.getElementById("notes").value;
   const duedate = document.getElementById("duedate").value;
   const priority = document.getElementById("priority").value;
   const status = document.getElementById("status").checked;
 
+
   if(!title) {
     alert("Try again - you at least need an item title, the rest you can edit afterwards");
-  } else {
-    let generatedItem = listItemFactory(title, notes, duedate, priority, status);
-    // fetch active list item, modify it and put it back in localstorage
-    let lists = JSON.parse(localStorage.getItem("lists"));
-    let activeListIndex = localStorage.getItem("activeList");
-    let activeList = lists[activeListIndex];
 
-    // let moddedList = JSON.parse(localStorage.getItem(activeListIndex));
-    // modify items by adding to array
-    activeList.items.push(generatedItem);
-    lists[activeListIndex] = activeList;
-    localStorage.setItem("lists", JSON.stringify(lists));
-    // Clear and close Item add form
-    closeAddItemForm();
-    ShowActiveListItems();
-    regenerateOnClickProjectListItems()
+    return;
   }
+
+  // Vars handling localstorage and generating new list item.
+  let generatedItem = listItemFactory(title, notes, duedate, priority, status);
+  let lists = JSON.parse(localStorage.getItem("lists"));
+  let activeListIndex = localStorage.getItem("activeList");
+  let activeList = lists[activeListIndex];
+
+  // If there is an edit ID then find and edit, else add new item
+  if(editId) {
+    activeList.items[editId] = generatedItem;
+  } else {
+    // Add new item
+    activeList.items.push(generatedItem);
+  }
+  // Update localStorage
+  lists[activeListIndex] = activeList;
+  localStorage.setItem("lists", JSON.stringify(lists));
+
+  // Clear and close Item add form
+  closeAddItemForm();
+  ShowActiveListItems();
+  regenerateOnClickProjectListItems()
 
 }
 
@@ -114,6 +149,7 @@ const closeAddItemForm = () => {
 }
 
 const clearItemAddForm = () => {
+  document.getElementById("item-form-popup").removeAttribute("data-edit");
   document.getElementById("item-title").value = "";
   document.getElementById("notes").value = "";
   document.getElementById("duedate").value = "";
@@ -160,8 +196,6 @@ function regenerateOnClickProjectListItems() {
 }
 
 const handleOnClickProjectListItems = (e) => {
-  console.dir(e.target);
-
   // if edit button is clicked  - reopen the item add form with prefilled fields
   // attach node to form call to distinguish its and edit not an add
   if(e.target.id === "edit-item") {
