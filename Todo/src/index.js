@@ -3,6 +3,7 @@ import { listItemFactory } from './listItemFactory';
 import { regenerateLists } from './regenerateLists';
 import { ShowActiveListItems } from './ShowActiveListItems';
 import { clearItemAddForm } from './clearItemAddForm';
+import { nuke } from './nukeEm';
 
 // Initial event listener config
 window.addEventListener('load', function () {
@@ -20,9 +21,11 @@ window.addEventListener('load', function () {
 
   document.getElementById("destroy").addEventListener("click", function(evt) {
     if (window.confirm("This will destroy EVERYTHING, are you sure? you will be left with an empty general list")) {
+      nuke();
       localStorage.clear();
-      location.reload();
     }
+
+    removeNuke();
   });
   // handle opening/closing of adding forms
   document.getElementById("add-list").addEventListener("click", openAddListModal);
@@ -57,6 +60,11 @@ window.addEventListener('load', function () {
   regenerateLists();
   ShowActiveList();
 })
+
+const removeNuke = () => {
+  setTimeout(function(){ document.getElementById("nukeBG").remove(); }, 8000);
+
+}
 
 const openAddListItemModal = (operation, itemId) => {
   const form = document.getElementById("item-form-popup");
