@@ -250,8 +250,6 @@ input:checked + .slider:after {
   .item-todo[data-prio="Urgent"]::after {
     background-color: #e91f1f;
     right: 0; }
-  .item-todo[data-prio="Urgent"] .due-date {
-    color: white; }
 
 #destroy {
   background-color: #e91f1f;

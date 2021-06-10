@@ -338,18 +338,7 @@ input:checked + .slider:after {
       background-color: $prio-red;
       right: 0;
     }
-
-    .due-date {
-      color: white;
-    }
   }
-
-  // &[data-prio="Complete"]::after {
-  //   background-color: #9e9e9e;
-  //   right: 0;
-  //   bottom: 0;
-  //   height: 100% !important;
-  // }
 }
 
 #destroy {
