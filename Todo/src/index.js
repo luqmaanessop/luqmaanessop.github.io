@@ -1,8 +1,8 @@
-import { formatDistance, subDays } from 'date-fns'
 import { listFactory } from './listFactory';
 import { listItemFactory } from './listItemFactory';
 import { regenerateLists } from './regenerateLists';
 import { ShowActiveListItems } from './ShowActiveListItems';
+import { clearItemAddForm } from './clearItemAddForm';
 
 // Initial event listener config
 window.addEventListener('load', function () {
@@ -81,7 +81,6 @@ const openAddListItemModal = (operation, itemId) => {
     document.getElementById("add-list-item-save").classList.contains('hidden') === false ? document.getElementById("add-list-item-save").classList.add('hidden') : "";
     document.getElementById("add-list-item-update-save").classList.remove('hidden');
 
-    document.getElementById("item-status").textContent = `Due: ${formatDistance(subDays(new Date(moddedList[activeListIndex].items[itemId].dueDate), 0), new Date(), { addSuffix: true })}`;
     // Prefill form fields because its an edit
     document.getElementById("item-title").value =
     moddedList[activeListIndex].items[itemId].title;
@@ -162,15 +161,6 @@ const closeAddItemForm = () => {
   formItemList.classList.toggle('hidden');
 
   clearItemAddForm();
-}
-
-const clearItemAddForm = () => {
-  document.getElementById("item-form-popup").removeAttribute("data-edit");
-  document.getElementById("item-title").value = "";
-  document.getElementById("notes").value = "";
-  document.getElementById("duedate").value = "";
-  document.getElementById("priority").value = "Low";
-  document.getElementById("status").checked = false;
 }
 
 const displayActiveListInForm = () => {
