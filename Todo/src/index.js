@@ -1,3 +1,4 @@
+import { formatDistance, subDays } from 'date-fns'
 import { listFactory } from './listFactory';
 import { listItemFactory } from './listItemFactory';
 import { regenerateLists } from './regenerateLists';
@@ -61,9 +62,6 @@ const openAddListItemModal = (operation, itemId) => {
   const form = document.getElementById("item-form-popup");
   form.classList.toggle('hidden');
 
-  console.log(operation);
-  console.log(itemId);
-
   if(itemId) {
     form.setAttribute("data-edit", itemId);
   }
@@ -83,6 +81,7 @@ const openAddListItemModal = (operation, itemId) => {
     document.getElementById("add-list-item-save").classList.contains('hidden') === false ? document.getElementById("add-list-item-save").classList.add('hidden') : "";
     document.getElementById("add-list-item-update-save").classList.remove('hidden');
 
+    document.getElementById("item-status").textContent = `Due: ${formatDistance(subDays(new Date(moddedList[activeListIndex].items[itemId].dueDate), 0), new Date(), { addSuffix: true })}`;
     // Prefill form fields because its an edit
     document.getElementById("item-title").value =
     moddedList[activeListIndex].items[itemId].title;
@@ -126,6 +125,9 @@ const handleItemModifySubmit = () => {
   const priority = document.getElementById("priority").value;
   const status = document.getElementById("status").checked;
 
+  console.log(typeof(duedate));
+
+
   if(!title) {
     alert("Try again - you at least need an item title, the rest you can edit afterwards");
 
@@ -167,7 +169,7 @@ const clearItemAddForm = () => {
   document.getElementById("item-title").value = "";
   document.getElementById("notes").value = "";
   document.getElementById("duedate").value = "";
-  document.getElementById("priority").value = "";
+  document.getElementById("priority").value = "Low";
   document.getElementById("status").checked = false;
 }
 
