@@ -102,18 +102,20 @@ const openAddListItemModal = (operation, itemId) => {
 }
 
 const handleItemDelete = (itemEditId) => {
-  // Get localStorage state
-  let lists = JSON.parse(localStorage.getItem("lists"));
-  let activeListIndex = localStorage.getItem("activeList");
-  let activeList = lists[activeListIndex];
+  if (window.confirm("Do you really want to delete this item?")) {
+    // Get localStorage state
+    let lists = JSON.parse(localStorage.getItem("lists"));
+    let activeListIndex = localStorage.getItem("activeList");
+    let activeList = lists[activeListIndex];
 
-  activeList.items.splice(itemEditId, 1);
-  lists[activeListIndex] = activeList;
+    activeList.items.splice(itemEditId, 1);
+    lists[activeListIndex] = activeList;
 
-  localStorage.setItem("lists", JSON.stringify(lists));
-  regenerateOnClickProjectListItems()
+    localStorage.setItem("lists", JSON.stringify(lists));
+    regenerateOnClickProjectListItems()
 
-  location.reload();
+    location.reload();
+  }
 }
 
 const handleItemModifySubmit = () => {
