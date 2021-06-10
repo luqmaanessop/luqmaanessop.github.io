@@ -53,12 +53,16 @@ button:hover {
   box-shadow: 0 0 2px #18005b;
   transition: all 0.2s ease-in-out; }
 
-#edit-item {
-  cursor: pointer;
-  margin-left: 10px; }
-  #edit-item:hover {
+#edit-item,
+#delete-item {
+  cursor: pointer; }
+  #edit-item:hover,
+  #delete-item:hover {
     background-color: #18005b;
     color: white; }
+
+#delete-item {
+  margin-left: 10px; }
 
 #content {
   margin-top: 40px;

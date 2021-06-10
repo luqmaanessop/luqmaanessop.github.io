@@ -16,7 +16,7 @@ function ShowActiveListItems() {
     let isComplete = activeList.items[i].status === true ? "complete" : "";
     let duedate = activeList.items[i].dueDate == "" ? "When you get a chance" : activeList.items[i].dueDate;
 
-    listOutput.innerHTML += `<div ${isComplete} class="item-todo" data-prio="${priority}" ><label for="item-${i}"><input ${status} type="checkbox" id="item-${i}"></input>${title}</label><span class="due-date"><strong>Due: </strong>${duedate}</span><button class="btn-radius" id="edit-item" type="text">Edit</button></div>`
+    listOutput.innerHTML += `<div ${isComplete} class="item-todo" data-prio="${priority}" ><label for="item-${i}"><input ${status} type="checkbox" id="item-${i}"></input>${title}</label><span class="due-date"><strong>Due: </strong>${duedate}</span><button class="btn-radius" id="delete-item" type="text">Delete</button><button class="btn-radius" id="edit-item" type="text">Edit</button></div>`
   }
 }
 

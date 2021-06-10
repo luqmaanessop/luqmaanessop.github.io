@@ -32,8 +32,8 @@ window.addEventListener('load', function () {
     displayActiveListInForm();
   });
   document.getElementById("add-list-item-form-cancel").addEventListener("click", closeAddItemForm, false);
-  document.getElementById("add-list-item-save").addEventListener("click", handleItemAddSubmit, false);
-  document.getElementById("add-list-item-update-save").addEventListener("click", handleItemAddSubmit, false);
+  document.getElementById("add-list-item-save").addEventListener("click", handleItemModifySubmit, false);
+  document.getElementById("add-list-item-update-save").addEventListener("click", handleItemModifySubmit, false);
 
   // Add onclick to nav items to set localStorage current active list
   regenerateOnClickProjectLists();
@@ -101,7 +101,22 @@ const openAddListItemModal = (operation, itemId) => {
   }
 }
 
-const handleItemAddSubmit = () => {
+const handleItemDelete = (itemEditId) => {
+  // Get localStorage state
+  let lists = JSON.parse(localStorage.getItem("lists"));
+  let activeListIndex = localStorage.getItem("activeList");
+  let activeList = lists[activeListIndex];
+
+  activeList.items.splice(itemEditId, 1);
+  lists[activeListIndex] = activeList;
+
+  localStorage.setItem("lists", JSON.stringify(lists));
+  regenerateOnClickProjectListItems()
+
+  location.reload();
+}
+
+const handleItemModifySubmit = () => {
   const editId = document.getElementById("item-form-popup").getAttribute("data-edit");
   const title = document.getElementById("item-title").value;
   const notes = document.getElementById("notes").value;
@@ -195,10 +210,15 @@ function regenerateOnClickProjectListItems() {
 const handleOnClickProjectListItems = (e) => {
   // if edit button is clicked  - reopen the item add form with prefilled fields
   // attach node to form call to distinguish its and edit not an add
-  if(e.target.id === "edit-item") {
-
+  if((e.target.id === "edit-item") || (e.target.id === "delete-item")) {
     let itemEditId = e.target.parentNode.children[0].children[0].id.substring(e.target.parentNode.children[0].children[0].id.length -1);
-    openAddListItemModal("edit", itemEditId);
+
+    if(e.target.id === "delete-item") {
+      handleItemDelete(itemEditId);
+    }
+    if(e.target.id === "edit-item")  {
+      openAddListItemModal("edit", itemEditId);
+    }
   }
   if (e.target.nodeName === "LABEL") {
     let status = !(e.target.children[0].checked);

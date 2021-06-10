@@ -71,14 +71,18 @@ button:hover {
   transition: all 0.2s ease-in-out;
 }
 
-#edit-item {
+#edit-item,
+#delete-item {
   cursor: pointer;
-  margin-left: 10px;
 
   &:hover {
     background-color: $purple;
     color: white;
   }
+}
+
+#delete-item {
+  margin-left: 10px;
 }
 
 #content {
