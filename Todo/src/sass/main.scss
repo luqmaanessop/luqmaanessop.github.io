@@ -9,8 +9,6 @@ div[role="presentation"] {
   max-width: 1440px;
   box-sizing: border-box;
   padding: 10px;
-  box-shadow: 0 0 3px $purple;
-  margin: 15px;
 
   @media all and(min-width: 1280px) {
     padding: 25px;
@@ -221,7 +219,6 @@ input:checked + .slider:after {
   position: absolute;
   padding: 2%;
   background: rgba(255, 255, 255, 0.25 );
-  // box-shadow: 0 8px 54px 0 rgba(31 38 135 / 38%);
   backdrop-filter: blur(34px);
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
@@ -231,7 +228,7 @@ input:checked + .slider:after {
   }
 
   @media all and(min-width: 768px) {
-    padding: 20%;
+    padding: 10%;
   }
 }
 

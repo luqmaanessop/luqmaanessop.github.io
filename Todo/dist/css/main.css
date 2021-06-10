@@ -1,9 +1,7 @@
 div[role="presentation"] {
   max-width: 1440px;
   box-sizing: border-box;
-  padding: 10px;
-  box-shadow: 0 0 3px #18005b;
-  margin: 15px; }
+  padding: 10px; }
   @media all and (min-width: 1280px) {
     div[role="presentation"] {
       padding: 25px;
@@ -178,7 +176,7 @@ input:checked + .slider:after {
     border: 0; }
   @media all and (min-width: 768px) {
     .form-popup {
-      padding: 20%; } }
+      padding: 10%; } }
 
 #items-container {
   width: 100%;
