@@ -117,7 +117,7 @@ nav {
     margin-bottom: 0;
 
     li {
-      border: 2px solid $purple;
+      border: 2px solid #f2f2f2;
       border-radius: 0;
       padding: 10px;
       text-decoration: none;
@@ -127,9 +127,10 @@ nav {
       position: relative;
       cursor: pointer;
       margin-right: 15px;
-      color: $purple;
+      color: #f2f2f2;
 
       &.active {
+        border-color: $purple;
         box-shadow: 0 0 2px $purple;
         background-color: $purple;
         color: white;

@@ -87,7 +87,7 @@ nav {
     padding-left: 0;
     margin-bottom: 0; }
     nav .menuItems li {
-      border: 2px solid #18005b;
+      border: 2px solid #f2f2f2;
       border-radius: 0;
       padding: 10px;
       text-decoration: none;
@@ -97,8 +97,9 @@ nav {
       position: relative;
       cursor: pointer;
       margin-right: 15px;
-      color: #18005b; }
+      color: #f2f2f2; }
       nav .menuItems li.active {
+        border-color: #18005b;
         box-shadow: 0 0 2px #18005b;
         background-color: #18005b;
         color: white;
