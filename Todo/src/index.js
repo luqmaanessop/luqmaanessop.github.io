@@ -62,8 +62,10 @@ window.addEventListener('load', function () {
 })
 
 const removeNuke = () => {
-  setTimeout(function(){ document.getElementById("nukeBG").remove(); }, 8000);
-
+  setTimeout(function() {
+    location.reload();
+    document.getElementById("nukeBG").remove();
+  }, 8000);
 }
 
 const openAddListItemModal = (operation, itemId) => {
