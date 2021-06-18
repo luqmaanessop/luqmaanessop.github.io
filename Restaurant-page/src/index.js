@@ -11,7 +11,18 @@ window.addEventListener('load', function () {
   document.getElementById("menu").addEventListener("click", menuPageSwitch);
   document.getElementById("home").addEventListener("click", homePageSwitch);
   document.getElementById("menu-toggle").addEventListener("click", toggleMenu);
+
+  initMenuItems();
 })
+
+function initMenuItems() {
+  let navItems = document.getElementById("main-nav").children;
+  const navItemsLength = navItems.length;
+
+  for(let i = 0; i <= navItemsLength - 1 ; i++) {
+    navItems[i].addEventListener('click', toggleMenu);
+  }
+}
 
 function toggleMenu() {
   let mainNav =  document.getElementById("main-nav");
