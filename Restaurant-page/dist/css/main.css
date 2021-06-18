@@ -76,6 +76,9 @@ nav {
     margin-bottom: 15px; }
     @media all and (min-width: 768px) {
       .four-col > * {
+        width: 48%; } }
+    @media all and (min-width: 1024px) {
+      .four-col > * {
         width: 24%; } }
 
 footer {
@@ -92,7 +95,7 @@ footer {
   top: 0;
   padding: 0;
   border: 0;
-  transition: left 0.3s ease-in; }
+  transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out; }
 
 #menu-toggle {
   background-color: #0ba2ff;
@@ -100,7 +103,7 @@ footer {
   width: 50px;
   border: 0;
   padding: 0;
-  z-index: 2; }
+  z-index: 3; }
   #menu-toggle::after {
     color: #f5f5f5;
     display: block;
@@ -113,8 +116,10 @@ footer {
   color: #0ba2ff;
   width: 100%;
   z-index: 2;
-  left: -100%; }
+  left: -100%;
+  opacity: 0; }
   #main-nav.visible {
+    opacity: 1;
     left: 0;
     margin-left: 50px; }
     #main-nav.visible + #content {
