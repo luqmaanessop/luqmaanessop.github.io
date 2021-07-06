@@ -1,10 +1,11 @@
 import { homePageContent } from './homepage';
 import { loadContactPage } from './contactpage';
 import { menuPageContent } from './menupage';
+import { carouselThisItems } from './packages/carousel';
+
 
 
 window.addEventListener('load', function () {
-
   homePageSwitch();
 
   document.getElementById("contact").addEventListener("click", contactPageSwitch);
@@ -30,10 +31,17 @@ function toggleMenu() {
 }
 
 function homePageSwitch() {
-  const element = document.createElement('div');
-  element.innerHTML = homePageContent();
+  const promise = new Promise(function(resolve, reject) {
+    const element = document.createElement('div');
+    element.innerHTML = homePageContent();
 
-  switchContent(element);
+    switchContent(element);
+
+    resolve();
+  }).then(function(result) {
+      let carousels =  document.querySelectorAll(".carousel-me");
+      carouselThisItems(carousels);
+  });
 }
 
 function contactPageSwitch() {
