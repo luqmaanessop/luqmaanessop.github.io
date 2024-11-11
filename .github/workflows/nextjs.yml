@@ -57,6 +57,11 @@ jobs:
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+      - name: Install pnpm (if needed)
+        if: ${{ steps.detect-package-manager.outputs.manager == 'pnpm' }}
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
@@ -76,13 +81,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
-        run: |
-          if [ "${{ steps.detect-package-manager.outputs.manager }}" == "pnpm" ]; then
-            corepack enable pnpm
-            pnpm install
-          else
-            ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-          fi
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
