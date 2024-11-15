@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { formatDate, getBlogPosts } from "app/lib/posts";
+import { PageTransition } from "app/components/PageTransition";
 
 export const metadata = {
   title: "Blog",

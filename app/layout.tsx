@@ -1,3 +1,5 @@
+"use-client";
+
 import "./global.css";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
@@ -6,6 +8,10 @@ import { Navbar } from "./components/nav";
 import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./config";
+import {
+  PageTransition,
+  PageTransitionWrapper,
+} from "./components/PageTransition";
 
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
@@ -81,7 +87,7 @@ export default function RootLayout({
         >
           <main className="flex-auto min-h-[100vh] min-w-0 flex flex-col px-6 sm:px-4 md:px-0 max-w-[640px] w-full">
             <Navbar />
-            <div className="flex-1">{children}</div>
+            <PageTransition>{children}</PageTransition>
             <Footer />
           </main>
         </ThemeProvider>
