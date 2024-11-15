@@ -8,10 +8,7 @@ import { Navbar } from "./components/nav";
 import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./config";
-import {
-  PageTransition,
-  PageTransitionWrapper,
-} from "./components/PageTransition";
+import { PageTransition } from "./components/PageTransition";
 
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
