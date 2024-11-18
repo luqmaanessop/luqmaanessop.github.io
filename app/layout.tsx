@@ -75,7 +75,7 @@ export default function RootLayout({
           title="JSON Feed"
         />
       </head>
-      <body className="antialiased flex flex-col items-center justify-center mx-auto">
+      <body className="antialiased flex flex-col items-center justify-center mx-auto min-h-screen">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -83,15 +83,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <body
-            className={`bg-black ${
-              process.env.NODE_ENV === "development"
-                ? "debug-screens"
-                : undefined
-            }`}
-          >
-            {children}
-          </body>
+          {children}
         </ThemeProvider>
       </body>
     </html>
