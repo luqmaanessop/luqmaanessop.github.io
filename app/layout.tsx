@@ -82,11 +82,16 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="flex-auto min-h-[100vh] min-w-0 flex flex-col px-6 sm:px-4 md:px-0 max-w-[640px] w-full">
-            <Navbar />
-            <PageTransition>{children}</PageTransition>
-            <Footer />
-          </main>
+          <Navbar />
+          <body
+            className={`bg-black ${
+              process.env.NODE_ENV === "development"
+                ? "debug-screens"
+                : undefined
+            }`}
+          >
+            {children}
+          </body>
         </ThemeProvider>
       </body>
     </html>

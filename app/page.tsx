@@ -1,34 +1,35 @@
-import Image from "next/image";
-import { socialLinks } from "./config";
+import Link from "next/link";
+import React from "react";
+import Particles from "./components/particles";
+import { metaData } from "./config";
+import { Navbar } from "./components/nav";
 
-export default function Page() {
+export default function Home() {
   return (
-    <section>
-      <a href={socialLinks.linkedin} target="_blank">
-        <Image
-          src="/profile.jpg"
-          alt="Profile photo"
-          className="rounded-full bg-gray-100 block lg:mt-5 mt-0 lg:mb-5 mb-10 mx-auto sm:float-right sm:ml-5 sm:mb-5 hover:grayscale grayscale-0"
-          unoptimized
-          width={160}
-          height={160}
-          priority
-        />
-      </a>
-
-      <h1 className="mb-8 text-2xl font-medium tracking-tight">
-        Frontend Developer
+    <div className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden">
+      <div className="hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
+      <Particles
+        className="absolute inset-0 -z-10 animate-fade-in"
+        quantity={100}
+      />
+      <h1 className="py-3.5 px-0.5 z-10 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text text-black dark:text-white">
+        {metaData.title}
       </h1>
 
-      <div className="prose prose-neutral dark:prose-invert">
-        <p>
-          Committed to making ethical, principled decisions while fostering
-          collaboration and a positive work environment that encourages personal
-          growth. Self-motivated and experienced in working with distributed
-          teams, I am dedicated to contributing value to the team, maintaining a
-          high standard of professional excellence, and promoting well-being.
-        </p>
+      <div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
+      <div className="my-16 text-center animate-fade-in">
+        {/* <h2 className="text-sm text-zinc-500 ">
+          I'm building{" "}
+          <Link
+            target="_blank"
+            href="https://unkey.dev"
+            className="underline duration-500 hover:text-zinc-300"
+          >
+            unkey.dev
+          </Link>{" "}
+          to solve API authentication and authorization for developers.
+        </h2> */}
       </div>
-    </section>
+    </div>
   );
 }
