@@ -8,7 +8,7 @@ export function PageTransition({ children }: PropsWithChildren) {
   ) : (
     <motion.main
       id="main-content"
-      className="flex-1"
+      className="flex-1 "
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

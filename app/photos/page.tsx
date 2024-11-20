@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { ImageGrid } from "app/components/image-grid";
+import { PageTransition } from "app/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Photos",

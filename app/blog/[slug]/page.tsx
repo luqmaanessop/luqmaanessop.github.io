@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
 import { formatDate, getBlogPosts } from "app/lib/posts";
 import { metaData } from "app/config";
+import { PageTransition } from "app/components/PageTransition";
 
 export async function generateStaticParams() {
   let posts = getBlogPosts();
@@ -62,40 +63,42 @@ export default function Blog({ params }) {
   }
 
   return (
-    <section className="flex-1 w-full container-text">
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${metaData.baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${metaData.baseUrl}/blog/${post.slug}`,
-            author: {
-              "@type": "Person",
-              name: metaData.name,
-            },
-          }),
-        }}
-      />
-      <h1 className="title mb-3 font-medium text-2xl tracking-tight">
-        {post.metadata.title}
-      </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-medium">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
-        </p>
-      </div>
-      <article className="prose prose-quoteless prose-neutral dark:prose-invert">
-        <CustomMDX source={post.content} />
-      </article>
-    </section>
+    <PageTransition>
+      <section className="flex-1 w-full container-text">
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              headline: post.metadata.title,
+              datePublished: post.metadata.publishedAt,
+              dateModified: post.metadata.publishedAt,
+              description: post.metadata.summary,
+              image: post.metadata.image
+                ? `${metaData.baseUrl}${post.metadata.image}`
+                : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+              url: `${metaData.baseUrl}/blog/${post.slug}`,
+              author: {
+                "@type": "Person",
+                name: metaData.name,
+              },
+            }),
+          }}
+        />
+        <h1 className="title mb-3 font-medium text-2xl tracking-tight">
+          {post.metadata.title}
+        </h1>
+        <div className="flex justify-between items-center mt-2 mb-8 text-medium">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            {formatDate(post.metadata.publishedAt)}
+          </p>
+        </div>
+        <article className="prose prose-quoteless prose-neutral dark:prose-invert">
+          <CustomMDX source={post.content} />
+        </article>
+      </section>
+    </PageTransition>
   );
 }
