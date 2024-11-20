@@ -62,7 +62,7 @@ export default function Blog({ params }) {
   }
 
   return (
-    <section className="flex-1 w-full">
+    <section className="flex-1 w-full container-text">
       <script
         type="application/ld+json"
         suppressHydrationWarning
