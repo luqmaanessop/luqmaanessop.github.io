@@ -23,7 +23,7 @@ function SocialLink({ href, icon: Icon }) {
 
 function SocialLinks() {
   return (
-    <div className="flex text-lg gap-3.5 float-right transition-opacity duration-300 hover:opacity-90">
+    <div className="flex text-lg gap-3.5 float-right transition-opacity duration-300 hover:opacity-90 items-end">
       <SocialLink href={socialLinks.github} icon={FaGithub} />
       <SocialLink href={socialLinks.linkedin} icon={FaLinkedinIn} />
       <SocialLink href={socialLinks.email} icon={TbMailFilled} />
@@ -36,7 +36,7 @@ function SocialLinks() {
 
 export default function Footer() {
   return (
-    <small className="block mb-4 text-[#1C1C1C] dark:text-[#D4D4D4]">
+    <div className="w-full lg:mt-16 mt-12 py-5 block text-[#1C1C1C] dark:text-[#D4D4D4]">
       <time>© {YEAR}</time>{" "}
       <a
         className="no-underline"
@@ -55,6 +55,6 @@ export default function Footer() {
         }
       `}</style>
       <SocialLinks />
-    </small>
+    </div>
   );
 }

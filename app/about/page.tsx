@@ -3,7 +3,7 @@ import { socialLinks } from "../config";
 
 export default function Page() {
   return (
-    <section>
+    <section className="flex-1 w-full">
       <a href={socialLinks.linkedin} target="_blank">
         <Image
           src="/profile.jpg"

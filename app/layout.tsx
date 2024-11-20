@@ -75,7 +75,7 @@ export default function RootLayout({
           title="JSON Feed"
         />
       </head>
-      <body className="antialiased flex flex-col items-center justify-center mx-auto min-h-screen">
+      <body className="antialiased flex flex-col items-center justify-center mx-auto min-h-screen container-page">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -84,6 +84,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
